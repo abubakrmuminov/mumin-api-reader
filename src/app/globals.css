@@ -1,0 +1,110 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  --emerald-900: #064e3b;
+  --emerald-600: #059669;
+  --gold-500: #f59e0b;
+  --sapphire-900: #1e3a8a;
+  --ivory: #fafaf9;
+  --charcoal: #18181b;
+  --sand: #f5f5f4;
+}
+
+@layer base {
+  body {
+    @apply bg-sand text-charcoal font-sans antialiased;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    @apply font-display;
+  }
+}
+
+@layer components {
+
+  /* Islamic decorative elements */
+  .islamic-border {
+    position: relative;
+    padding: 2rem;
+  }
+
+  .islamic-border::before,
+  .islamic-border::after {
+    content: '';
+    position: absolute;
+    width: 40px;
+    height: 40px;
+    border: 2px solid theme('colors.gold.500');
+  }
+
+  .islamic-border::before {
+    top: 0;
+    left: 0;
+    border-right: none;
+    border-bottom: none;
+  }
+
+  .islamic-border::after {
+    bottom: 0;
+    right: 0;
+    border-left: none;
+    border-top: none;
+  }
+
+  /* Glassmorphism effect */
+  .glass {
+    @apply bg-white/90 backdrop-blur-md border border-emerald-950/10;
+  }
+
+  /* Gradient text */
+  .gradient-text {
+    @apply bg-gradient-to-r from-emerald-600 to-gold-500 text-transparent bg-clip-text;
+  }
+
+  /* Reading Modes */
+  .reading-light {
+    @apply bg-[#fdfdfd] text-[#1a1a1a];
+  }
+
+  .reading-dark {
+    @apply bg-[#0a1a16] text-[#e0e0e0];
+  }
+
+  .reading-sepia {
+    @apply bg-[#f4ecd8] text-[#433422];
+  }
+
+  .reading-contrast {
+    @apply bg-black text-white;
+  }
+}
+
+@layer utilities {
+  .text-shadow-sm {
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.05);
+  }
+
+  .text-balance {
+    text-wrap: balance;
+  }
+}
+
+/* Custom Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  @apply bg-transparent;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-emerald-900/20 rounded-full hover:bg-emerald-900/40 transition-colors;
+}

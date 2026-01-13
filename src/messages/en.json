@@ -1,0 +1,27 @@
+{
+    "Home": {
+        "title": "Mumin Hadith Reader",
+        "hero_title": "Connect with the Prophetic Wisdom",
+        "hero_subtitle": "Read, study, and reflect upon the authentic traditions of the Prophet Muhammad (ﷺ).",
+        "daily_hadith": "Today's Hadith",
+        "explore_collections": "Explore Collections"
+    },
+    "Navbar": {
+        "home": "Home",
+        "collections": "Collections",
+        "random": "Random",
+        "search_placeholder": "Search hadiths...",
+        "bookmarks": "Bookmarks"
+    },
+    "Collections": {
+        "title": "Hadith Collections",
+        "subtitle": "Browse through the most authentic and globally recognized collections.",
+        "hadith_count": "{count} Hadiths"
+    },
+    "Hadith": {
+        "translation": "English Translation",
+        "narrator": "Narrated by {narrator}",
+        "isnad": "Show Isnad",
+        "reference": "Reference"
+    }
+}
