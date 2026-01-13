@@ -37,16 +37,21 @@ const FEATURED_COLLECTIONS = [
 
 export default function HomePage() {
   const [dailyHadith, setDailyHadith] = useState<Hadith | null>(null);
+  const [featuredCollections, setFeaturedCollections] = useState<any[]>([]);
   const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     async function loadData() {
       try {
-        const hadith = await hadithApi.getDailyHadith();
+        const [hadith, collections] = await Promise.all([
+          hadithApi.getDailyHadith(),
+          hadithApi.getCollections()
+        ]);
         setDailyHadith(hadith);
+        setFeaturedCollections(collections.slice(0, 3));
       } catch (err) {
-        console.error('Failed to load daily hadith', err);
+        console.error('Failed to load data', err);
       } finally {
         setLoading(false);
       }
@@ -132,12 +137,22 @@ export default function HomePage() {
             </div>
 
             <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-              {FEATURED_COLLECTIONS.map((col, idx) => (
-                <CollectionCard
-                  key={col.slug}
-                  {...col}
-                />
-              ))}
+              {loading ? (
+                [1, 2, 3].map((i) => (
+                  <div key={i} className="h-64 rounded-3xl bg-emerald-900/5 animate-pulse" />
+                ))
+              ) : (
+                featuredCollections.map((col, idx) => (
+                  <CollectionCard
+                    key={col.slug}
+                    slug={col.slug}
+                    nameEnglish={col.nameEnglish}
+                    nameArabic={col.nameArabic}
+                    count={col.totalHadith || col.count || 0}
+                    description={col.description}
+                  />
+                ))
+              )}
             </div>
 
             <div className="mt-12 text-center md:hidden">

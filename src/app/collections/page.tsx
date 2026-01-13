@@ -8,6 +8,7 @@ import { motion } from 'framer-motion';
 import { BookOpen, Search } from 'lucide-react';
 import { Metadata } from 'next';
 import { StructuredData, generateBreadcrumbSchema } from '@/components/StructuredData';
+import { hadithApi } from '@/lib/api/client';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mumin.ink';
 
@@ -81,6 +82,31 @@ const ALL_COLLECTIONS = [
 ];
 
 export default function CollectionsPage() {
+    const [collections, setCollections] = React.useState<any[]>([]);
+    const [isLoading, setIsLoading] = React.useState(true);
+    const [filter, setFilter] = React.useState('');
+
+    React.useEffect(() => {
+        const fetchCollections = async () => {
+            try {
+                const data = await hadithApi.getCollections();
+                setCollections(data);
+            } catch (error) {
+                console.error('Failed to fetch collections:', error);
+            } finally {
+                setIsLoading(false);
+            }
+        };
+        fetchCollections();
+    }, []);
+
+    const filteredCollections = collections.filter(col =>
+        col.nameEnglish.toLowerCase().includes(filter.toLowerCase()) ||
+        (col.nameArabic && col.nameArabic.includes(filter))
+    );
+
+    const displayCollections = filteredCollections.length > 0 ? filteredCollections : (isLoading ? [] : []);
+
     return (
         <main className="min-h-screen relative">
             <StructuredData data={generateBreadcrumbSchema([
@@ -130,24 +156,40 @@ export default function CollectionsPage() {
                             <input
                                 type="text"
                                 placeholder="Filter collections..."
+                                value={filter}
+                                onChange={(e) => setFilter(e.target.value)}
                                 className="w-full px-6 py-4 rounded-2xl bg-white border border-emerald-900/5 shadow-sm focus:outline-none focus:ring-2 focus:ring-emerald-600/10 focus:border-emerald-600/20 transition-all font-medium"
                             />
                             <Search className="absolute right-6 top-1/2 -translate-y-1/2 w-5 h-5 text-emerald-900/20" />
                         </motion.div>
                     </div>
 
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
-                        {ALL_COLLECTIONS.map((col, idx) => (
-                            <motion.div
-                                key={col.slug}
-                                initial={{ opacity: 0, y: 20 }}
-                                animate={{ opacity: 1, y: 0 }}
-                                transition={{ delay: 0.1 * (idx % 3) }}
-                            >
-                                <CollectionCard {...col} />
-                            </motion.div>
-                        ))}
-                    </div>
+                    {isLoading ? (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                            {[1, 2, 3, 4, 5, 6].map((i) => (
+                                <div key={i} className="h-64 rounded-3xl bg-emerald-900/5 animate-pulse" />
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-x-8 gap-y-12">
+                            {displayCollections.map((col, idx) => (
+                                <motion.div
+                                    key={col.slug}
+                                    initial={{ opacity: 0, y: 20 }}
+                                    animate={{ opacity: 1, y: 0 }}
+                                    transition={{ delay: 0.1 * (idx % 3) }}
+                                >
+                                    <CollectionCard
+                                        slug={col.slug}
+                                        nameEnglish={col.nameEnglish}
+                                        nameArabic={col.nameArabic}
+                                        count={col.totalHadith || col.count || 0}
+                                        description={col.description}
+                                    />
+                                </motion.div>
+                            ))}
+                        </div>
+                    )}
                 </div>
             </section>
 

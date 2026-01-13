@@ -6,6 +6,7 @@ export const apiClient = axios.create({
     baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json',
+        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
     },
 });
 
@@ -97,12 +98,17 @@ export const hadithApi = {
     },
 
     getDailyHadith: async (language: string = 'en') => {
-        // Falls back to random if daily endpoint doesn't exist yet
-        try {
-            const response = await apiClient.get<Hadith>('/hadiths/daily', { params: { language } });
-            return response.data;
-        } catch (e) {
-            return hadithApi.getRandomHadith({ language });
-        }
+        const response = await apiClient.get<Hadith>('/hadiths/daily', { params: { language } });
+        return response.data;
+    },
+
+    getCollections: async () => {
+        const response = await apiClient.get<any[]>('/collections');
+        return response.data;
+    },
+
+    getCollectionBySlug: async (slug: string) => {
+        const response = await apiClient.get<any>(`/collections/${slug}`);
+        return response.data;
     },
 };
