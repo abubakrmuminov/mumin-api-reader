@@ -1,0 +1,122 @@
+{
+    "Home": {
+        "title": "Mumin Hadith Reader",
+        "companion": "رفيقك الروحي",
+        "hero_title_1": "تواصل مع",
+        "hero_title_2": "الحكمة النبوية",
+        "hero_subtitle": "اقرأ وادرس وتأمل في الأحاديث الصحيحة للنبي محمد ﷺ",
+        "daily_hadith": "حديث اليوم",
+        "refresh": "تحديث",
+        "explore_collections": "استكشف المجموعات",
+        "explore_collections_subtitle": "اكتشف الكتب الرئيسية للأحاديث النبوية من مصادر موثوقة.",
+        "view_all": "عرض الكل",
+        "view_all_collections": "عرض جميع المجموعات",
+        "unable_load": "تعذر تحميل حديث اليوم. يرجى التحقق من اتصالك."
+    },
+    "Navbar": {
+        "home": "الرئيسية",
+        "collections": "المجموعات",
+        "random": "عشوائي",
+        "search_placeholder": "ابحث في الأحاديث...",
+        "bookmarks": "المفضلة",
+        "language": "اللغة",
+        "settings": "الإعدادات",
+        "recent_searches": "عمليات البحث الأخيرة",
+        "clear": "مسح",
+        "search_for": "البحث عن",
+        "search_results": "نتائج البحث"
+    },
+    "Collections": {
+        "title": "مجموعات الأحاديث",
+        "subtitle": "تصفح أصح المجموعات المعترف بها عالمياً.",
+        "hadith_count": "{count} حديث",
+        "library": "المكتبة",
+        "filter_placeholder": "تصفية المجموعات...",
+        "no_hadiths": "لم يتم العثور على أحاديث",
+        "no_hadiths_subtitle": "حاول تعديل البحث أو تصفح جميع المجموعات.",
+        "return_to_library": "العودة إلى المكتبة",
+        "browse_hadiths": "تصفح جميع الأحاديث من هذه المجموعة الصحيحة",
+        "search_within": "ابحث في هذه المجموعة...",
+        "explore": "استكشف",
+        "page_info": "صفحة {page} من {total}",
+        "stats": {
+            "hadiths": "50 ألف+",
+            "hadiths_label": "حديث",
+            "collections": "8",
+            "collections_label": "مجموعة",
+            "languages": "12+",
+            "languages_label": "لغة",
+            "authentic": "100%",
+            "authentic_label": "موثوقة"
+        }
+    },
+    "Hadith": {
+        "translation": "الترجمة العربية",
+        "narrator": "رواه {narrator}",
+        "isnad": "إظهار الإسناد",
+        "hide_isnad": "إخفاء الإسناد",
+        "reference": "المرجع",
+        "share": "مشاركة",
+        "copy": "نسخ الاقتباس",
+        "copied": "تم النسخ إلى الحافظة!",
+        "chain_of_narration": "سلسلة الرواة (الإسناد)",
+        "not_found": "الحديث غير موجود",
+        "not_found_message": "لم نتمكن من العثور على الحديث رقم {number} في {collection}.",
+        "book": "الكتاب",
+        "collection_context": "سياق المجموعة",
+        "view_full_collection": "عرض المجموعة الكاملة",
+        "understanding": "فهم هذه الرواية",
+        "understanding_text": "هذه الرواية من {collection} توفر إرشادات عميقة للمؤمن. لاحظ العلماء أن سياق هذا التقليد ضروري لتطبيقه الصحيح.",
+        "share_link": "مشاركة الرابط",
+        "print": "طباعة",
+        "report_error": "الإبلاغ عن خطأ",
+        "previous": "السابق",
+        "next": "التالي",
+        "grades": {
+            "sahih": "صحيح",
+            "hasan": "حسن",
+            "daif": "ضعيف",
+            "mawdu": "موضوع"
+        }
+    },
+    "Language": {
+        "select": "اختر اللغة"
+    },
+    "Settings": {
+        "title": "إعدادات القراءة",
+        "customize": "خصص تجربة القراءة الخاصة بك، واضبط أحجام الخطوط، وتبديل الترجمات.",
+        "open_settings": "فتح الإعدادات",
+        "theme": "المظهر",
+        "themes": {
+            "light": "فاتح",
+            "sepia": "داكن قليلاً",
+            "dark": "داكن",
+            "contrast": "تباين عالٍ"
+        },
+        "text_size": "حجم النص",
+        "level": "مستوى {level}",
+        "arabic_font": "الخط العربي",
+        "fonts": {
+            "amiri": "الأميري (كلاسيكي)",
+            "cairo": "كايرو (عصري)",
+            "traditional": "عربي تقليدي"
+        },
+        "toggles": {
+            "translations": "الترجمات",
+            "translations_desc": "إظهار/إخفاء نص الترجمة",
+            "narrator_chain": "سلسلة الرواة",
+            "narrator_chain_desc": "إظهار الإسناد المفصل"
+        },
+        "reset": "إعادة الضبط"
+    },
+    "Footer": {
+        "description": "نربط الأمة بالسنة النبوية الصحيحة من خلال التكنولوجيا الحديثة والتصميم الجميل.",
+        "platform": "المنصة",
+        "about": "حول",
+        "mission": "مهمتنا",
+        "methodology": "المنهجية",
+        "privacy": "سياسة الخصوصية",
+        "terms": "شروط الاستخدام",
+        "rights": "© 2026 مؤمن. جميع الحقوق محفوظة. تم بناؤه بإحسان للأمة الإسلامية."
+    }
+}

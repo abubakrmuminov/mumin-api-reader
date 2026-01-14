@@ -1,36 +1,42 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import {
     Heart,
     Share2,
     Copy,
     ExternalLink,
-    Info
+    Info,
+    Check
 } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Hadith } from '@/lib/api/client';
 import { useReadingSettings } from '@/store/useReadingSettings';
 import { useBookmarks } from '@/store/useBookmarks';
-import { motion } from 'framer-motion';
-import { getCollectionSlug } from '@/lib/utils';
+import { motion, AnimatePresence } from 'framer-motion';
 import Link from 'next/link';
+import { useTranslations } from 'next-intl';
 
 interface HadithCardProps {
     hadith: Hadith;
     showDetails?: boolean;
 }
 
-const GRADES = {
-    sahih: { label: 'Sahih', color: 'bg-emerald-500', text: 'Authentic' },
-    hasan: { label: 'Hasan', color: 'bg-amber-500', text: 'Good' },
-    daif: { label: 'Daif', color: 'bg-ruby', text: 'Weak' },
-    mawdu: { label: 'Mawdu', color: 'bg-gray-500', text: 'Fabricated' },
-};
+// Grades are moved inside component to use translations
 
 export const HadithCard: React.FC<HadithCardProps> = ({ hadith, showDetails = false }) => {
     const { textSize, arabicFont, mode, showTranslation } = useReadingSettings();
     const { addBookmark, removeBookmark, isBookmarked } = useBookmarks();
+    const [showCopyToast, setShowCopyToast] = useState(false);
+    const [showIsnad, setShowIsnad] = useState(false);
+    const t = useTranslations('Hadith');
+
+    const GRADES = {
+        sahih: { label: t('grades.sahih'), color: 'bg-emerald-500' },
+        hasan: { label: t('grades.hasan'), color: 'bg-amber-500' },
+        daif: { label: t('grades.daif'), color: 'bg-ruby' },
+        mawdu: { label: t('grades.mawdu'), color: 'bg-gray-500' },
+    };
 
     const bookmarked = isBookmarked(hadith.id);
     const grade = hadith.translation?.grade?.toLowerCase() as keyof typeof GRADES || 'sahih';
@@ -61,10 +67,52 @@ export const HadithCard: React.FC<HadithCardProps> = ({ hadith, showDetails = fa
         }
     };
 
-    const copyToClipboard = () => {
+    const copyToClipboard = async () => {
         const text = `${hadith.arabicText}\n\n${hadith.translation?.text}\n\n— ${hadith.collection} ${hadith.hadithNumber}`;
-        navigator.clipboard.writeText(text);
-        // Add toast here
+
+        try {
+            // Try modern clipboard API first
+            await navigator.clipboard.writeText(text);
+            setShowCopyToast(true);
+            setTimeout(() => setShowCopyToast(false), 2000);
+        } catch (err) {
+            // Fallback for browsers/systems that don't support clipboard API
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            textArea.style.position = 'fixed';
+            textArea.style.left = '-999999px';
+            document.body.appendChild(textArea);
+            textArea.select();
+            try {
+                document.execCommand('copy');
+                setShowCopyToast(true);
+                setTimeout(() => setShowCopyToast(false), 2000);
+            } catch (e) {
+                console.error('Failed to copy', e);
+            }
+            document.body.removeChild(textArea);
+        }
+    };
+
+    const handleShare = async () => {
+        const url = `${window.location.origin}/collections/${hadith.collection}/${hadith.hadithNumber}`;
+        if (navigator.share) {
+            try {
+                await navigator.share({
+                    title: `Hadith ${hadith.hadithNumber} - ${hadith.collection}`,
+                    text: hadith.translation?.text || hadith.arabicText,
+                    url: url
+                });
+            } catch (err) {
+                // User cancelled or error occurred
+                console.log('Share cancelled');
+            }
+        } else {
+            // Fallback: copy link to clipboard
+            navigator.clipboard.writeText(url);
+            setShowCopyToast(true);
+            setTimeout(() => setShowCopyToast(false), 2000);
+        }
     };
 
     return (
@@ -109,11 +157,15 @@ export const HadithCard: React.FC<HadithCardProps> = ({ hadith, showDetails = fa
                     <button
                         onClick={copyToClipboard}
                         className="p-2.5 rounded-full text-emerald-900/30 hover:bg-emerald-900/5 transition-all"
-                        title="Copy Citation"
+                        title={t('copy')}
                     >
                         <Copy className="w-5 h-5" />
                     </button>
-                    <button className="p-2.5 rounded-full text-emerald-900/30 hover:bg-emerald-900/5 transition-all">
+                    <button
+                        onClick={handleShare}
+                        className="p-2.5 rounded-full text-emerald-900/30 hover:bg-emerald-900/5 transition-all"
+                        title={t('share')}
+                    >
                         <Share2 className="w-5 h-5" />
                     </button>
                 </div>
@@ -137,7 +189,7 @@ export const HadithCard: React.FC<HadithCardProps> = ({ hadith, showDetails = fa
                 <div className="mt-8 pt-8 border-t border-emerald-900/5 relative z-10">
                     <div className="flex items-center gap-2 mb-4 text-emerald-900/30">
                         <Globe className="w-4 h-4" />
-                        <span className="text-xs font-bold uppercase tracking-widest">English Translation</span>
+                        <span className="text-xs font-bold uppercase tracking-widest">{t('translation')}</span>
                     </div>
                     <p className={cn(
                         "leading-relaxed font-sans",
@@ -148,7 +200,7 @@ export const HadithCard: React.FC<HadithCardProps> = ({ hadith, showDetails = fa
                     </p>
                     {hadith.translation.narrator && (
                         <p className="mt-4 text-sm font-medium italic opacity-60">
-                            — Narrated by {hadith.translation.narrator}
+                            — {t('narrator', { narrator: hadith.translation.narrator })}
                         </p>
                     )}
                 </div>
@@ -157,19 +209,57 @@ export const HadithCard: React.FC<HadithCardProps> = ({ hadith, showDetails = fa
             {/* Footer / Actions */}
             <div className="mt-8 flex items-center justify-between relative z-10 pt-4">
                 <div className="flex items-center gap-4">
-                    <button className="flex items-center gap-2 text-xs font-bold text-emerald-900/40 hover:text-emerald-900 transition-colors uppercase tracking-widest">
+                    <button
+                        onClick={() => setShowIsnad(!showIsnad)}
+                        className="flex items-center gap-2 text-xs font-bold text-emerald-900/40 hover:text-emerald-900 transition-colors uppercase tracking-widest"
+                    >
                         <Info className="w-4 h-4" />
-                        Show Isnad
+                        {showIsnad ? t('hide_isnad') : t('isnad')}
                     </button>
                     <Link
-                        href={`/collections/${getCollectionSlug(hadith.collection)}/${hadith.hadithNumber}`}
+                        href={`/collections/${hadith.collection}/${hadith.hadithNumber}`}
                         className="flex items-center gap-2 text-xs font-bold text-emerald-900/40 hover:text-emerald-900 transition-colors uppercase tracking-widest"
                     >
                         <ExternalLink className="w-4 h-4" />
-                        Reference
+                        {t('reference')}
                     </Link>
                 </div>
             </div>
+
+            {/* Isnad Section */}
+            <AnimatePresence>
+                {showIsnad && hadith.arabicNarrator && (
+                    <motion.div
+                        initial={{ opacity: 0, height: 0 }}
+                        animate={{ opacity: 1, height: 'auto' }}
+                        exit={{ opacity: 0, height: 0 }}
+                        className="mt-6 pt-6 border-t border-emerald-900/10 relative z-10"
+                    >
+                        <div className="flex items-center gap-2 mb-3 text-emerald-900/40">
+                            <Info className="w-4 h-4" />
+                            <span className="text-xs font-bold uppercase tracking-widest">{t('chain_of_narration')}</span>
+                        </div>
+                        <p className="text-sm text-emerald-900/60 leading-relaxed" dir="rtl">
+                            {hadith.arabicNarrator}
+                        </p>
+                    </motion.div>
+                )}
+            </AnimatePresence>
+
+            {/* Copy Toast */}
+            <AnimatePresence>
+                {showCopyToast && (
+                    <motion.div
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: 10 }}
+                        className="absolute top-4 right-4 bg-emerald-900 text-white px-4 py-2 rounded-full shadow-lg flex items-center gap-2 z-20"
+                    >
+                        <Check className="w-4 h-4" />
+                        <span className="text-sm font-medium">{t('copied')}</span>
+                    </motion.div>
+                )}
+            </AnimatePresence>
         </motion.div>
     );
 };

@@ -41,7 +41,7 @@
     position: absolute;
     width: 40px;
     height: 40px;
-    border: 2px solid theme('colors.gold.500');
+    border: 2px solid var(--gold-500);
   }
 
   .islamic-border::before {

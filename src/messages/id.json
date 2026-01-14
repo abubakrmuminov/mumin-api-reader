@@ -1,0 +1,122 @@
+{
+    "Home": {
+        "title": "Mumin Hadith Reader",
+        "companion": "Pendamping Spiritual Anda",
+        "hero_title_1": "Terhubung dengan",
+        "hero_title_2": "Kebijaksanaan Nabi",
+        "hero_subtitle": "Baca, pelajari, dan renungkan hadis-hadis shahih Nabi Muhammad ﷺ",
+        "daily_hadith": "Hadis Hari Ini",
+        "refresh": "Segarkan",
+        "explore_collections": "Jelajahi Koleksi",
+        "explore_collections_subtitle": "Temukan kitab-kitab utama Hadis dari sumber-sumber shahih.",
+        "view_all": "Lihat Semua",
+        "view_all_collections": "Lihat Semua Koleksi",
+        "unable_load": "Gagal memuat hadis harian. Silakan periksa koneksi Anda."
+    },
+    "Navbar": {
+        "home": "Beranda",
+        "collections": "Koleksi",
+        "random": "Acak",
+        "search_placeholder": "Cari hadis...",
+        "bookmarks": "Penanda",
+        "language": "Bahasa",
+        "settings": "Pengaturan",
+        "recent_searches": "Pencarian Terkini",
+        "clear": "Hapus",
+        "search_for": "Cari",
+        "search_results": "Hasil Pencarian"
+    },
+    "Collections": {
+        "title": "Koleksi Hadis",
+        "subtitle": "Telusuri koleksi paling shahih dan diakui secara global.",
+        "hadith_count": "{count} Hadis",
+        "library": "Perpustakaan",
+        "filter_placeholder": "Filter koleksi...",
+        "no_hadiths": "Tidak ada hadis ditemukan",
+        "no_hadiths_subtitle": "Coba sesuaikan pencarian Anda atau jelajahi semua koleksi.",
+        "return_to_library": "Kembali ke Perpustakaan",
+        "browse_hadiths": "Telusuri semua hadis dari koleksi shahih ini",
+        "search_within": "Cari dalam koleksi ini...",
+        "explore": "Jelajahi",
+        "page_info": "Halaman {page} dari {total}",
+        "stats": {
+            "hadiths": "50rb+",
+            "hadiths_label": "Hadis",
+            "collections": "8",
+            "collections_label": "Koleksi",
+            "languages": "12+",
+            "languages_label": "Bahasa",
+            "authentic": "100%",
+            "authentic_label": "Shahih"
+        }
+    },
+    "Hadith": {
+        "translation": "Terjemahan Bahasa Indonesia",
+        "narrator": "Diriwayatkan oleh {narrator}",
+        "isnad": "Tampilkan Isnad",
+        "hide_isnad": "Sembunyikan Isnad",
+        "reference": "Referensi",
+        "share": "Bagikan",
+        "copy": "Salin Kutipan",
+        "copied": "Disalin ke clipboard!",
+        "chain_of_narration": "Rantai Perawi (Isnad)",
+        "not_found": "Hadis tidak ditemukan",
+        "not_found_message": "Kami tidak dapat menemukan hadis №{number} dalam {collection}.",
+        "book": "Kitab",
+        "collection_context": "Konteks Koleksi",
+        "view_full_collection": "Lihat Koleksi Lengkap",
+        "understanding": "Memahami Riwayat Ini",
+        "understanding_text": "Riwayat dari {collection} ini memberikan panduan mendalam bagi orang beriman. Para ulama mencatat bahwa konteks tradisi ini sangat penting untuk penerapannya yang benar.",
+        "share_link": "Bagikan Tautan",
+        "print": "Cetak",
+        "report_error": "Laporkan Kesalahan",
+        "previous": "Sebelumnya",
+        "next": "Berikutnya",
+        "grades": {
+            "sahih": "Shahih",
+            "hasan": "Hasan",
+            "daif": "Dhaif",
+            "mawdu": "Palsu"
+        }
+    },
+    "Language": {
+        "select": "Pilih Bahasa"
+    },
+    "Settings": {
+        "title": "Pengaturan Membaca",
+        "customize": "Sesuaikan pengalaman membaca Anda, atur ukuran font, dan aktifkan/nonaktifkan terjemahan.",
+        "open_settings": "Buka Pengaturan",
+        "theme": "Tema",
+        "themes": {
+            "light": "Terang",
+            "sepia": "Sepia",
+            "dark": "Gelap",
+            "contrast": "Kontras"
+        },
+        "text_size": "Ukuran Teks",
+        "level": "Tingkat {level}",
+        "arabic_font": "Font Arab",
+        "fonts": {
+            "amiri": "Amiri (Klasik)",
+            "cairo": "Cairo (Modern)",
+            "traditional": "Tradisional"
+        },
+        "toggles": {
+            "translations": "Terjemahan",
+            "translations_desc": "Tampilkan/sembunyikan teks terjemahan",
+            "narrator_chain": "Rantai Perawi",
+            "narrator_chain_desc": "Tampilkan isnad terperinci"
+        },
+        "reset": "Atur Ulang ke Default"
+    },
+    "Footer": {
+        "description": "Menghubungkan Ummah dengan Sunnah yang shahih melalui teknologi modern dan desain yang indah.",
+        "platform": "Platform",
+        "about": "Tentang",
+        "mission": "Misi Kami",
+        "methodology": "Metodologi",
+        "privacy": "Kebijakan Privasi",
+        "terms": "Ketentuan Penggunaan",
+        "rights": "© 2026 Mumin. Seluruh hak cipta dilindungi. Dibangun dengan ihsaan untuk Ummah global."
+    }
+}

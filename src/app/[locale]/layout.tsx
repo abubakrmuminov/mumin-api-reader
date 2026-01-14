@@ -112,18 +112,34 @@ export const viewport: Viewport = {
 };
 
 import { StructuredData, generateSearchSchema } from "@/components/StructuredData";
+import { NextIntlClientProvider } from 'next-intl';
+import { getMessages } from 'next-intl/server';
+import { notFound } from 'next/navigation';
+import { locales } from '@/i18n';
+import { GlobalPanels } from '@/components/GlobalPanels';
 
-export default function RootLayout({
+export default async function RootLayout({
   children,
-}: Readonly<{
+  params,
+}: {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ locale: string }>;
+}) {
+  const { locale } = await params;
+
+  if (!locales.includes(locale as any)) {
+    notFound();
+  }
+
+  const messages = await getMessages();
+
   return (
-    <html lang="en" className="scroll-smooth" suppressHydrationWarning>
+    <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <head>
         <StructuredData data={generateSearchSchema(BASE_URL)} />
       </head>
       <body
+        suppressHydrationWarning
         className={cn(
           "min-h-screen bg-sand font-body antialiased",
           inter.variable,
@@ -133,7 +149,10 @@ export default function RootLayout({
           poppins.variable
         )}
       >
-        {children}
+        <NextIntlClientProvider messages={messages}>
+          {children}
+          <GlobalPanels />
+        </NextIntlClientProvider>
       </body>
     </html>
   );

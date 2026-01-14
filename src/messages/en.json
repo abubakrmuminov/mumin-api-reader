@@ -1,27 +1,122 @@
 {
     "Home": {
         "title": "Mumin Hadith Reader",
-        "hero_title": "Connect with the Prophetic Wisdom",
+        "companion": "Your Spiritual Companion",
+        "hero_title_1": "Connect with the",
+        "hero_title_2": "Prophetic Wisdom",
         "hero_subtitle": "Read, study, and reflect upon the authentic traditions of the Prophet Muhammad (ﷺ).",
         "daily_hadith": "Today's Hadith",
-        "explore_collections": "Explore Collections"
+        "refresh": "Refresh",
+        "explore_collections": "Explore Collections",
+        "explore_collections_subtitle": "Discover the major books of Hadith from authentic sources.",
+        "view_all": "View All",
+        "view_all_collections": "View All Collections",
+        "unable_load": "Unable to load daily hadith. Please check your connection."
     },
     "Navbar": {
         "home": "Home",
         "collections": "Collections",
         "random": "Random",
         "search_placeholder": "Search hadiths...",
-        "bookmarks": "Bookmarks"
+        "bookmarks": "Bookmarks",
+        "language": "Language",
+        "settings": "Settings",
+        "recent_searches": "Recent Searches",
+        "clear": "Clear",
+        "search_for": "Search for",
+        "search_results": "Search Results"
     },
     "Collections": {
         "title": "Hadith Collections",
         "subtitle": "Browse through the most authentic and globally recognized collections.",
-        "hadith_count": "{count} Hadiths"
+        "hadith_count": "{count} Hadiths",
+        "library": "Library",
+        "filter_placeholder": "Filter collections...",
+        "no_hadiths": "No hadiths found",
+        "no_hadiths_subtitle": "Try adjusting your search or browse all collections.",
+        "return_to_library": "Return to Library",
+        "browse_hadiths": "Browse all hadiths from this authentic collection",
+        "search_within": "Search within this collection...",
+        "explore": "Explore",
+        "page_info": "Page {page} of {total}",
+        "stats": {
+            "hadiths": "50k+",
+            "hadiths_label": "Hadiths",
+            "collections": "8",
+            "collections_label": "Collections",
+            "languages": "12+",
+            "languages_label": "Languages",
+            "authentic": "100%",
+            "authentic_label": "Authentic"
+        }
     },
     "Hadith": {
         "translation": "English Translation",
         "narrator": "Narrated by {narrator}",
         "isnad": "Show Isnad",
-        "reference": "Reference"
+        "hide_isnad": "Hide Isnad",
+        "reference": "Reference",
+        "share": "Share",
+        "copy": "Copy Citation",
+        "copied": "Copied to clipboard!",
+        "chain_of_narration": "Chain of Narration (Isnad)",
+        "not_found": "Hadith not found",
+        "not_found_message": "We couldn't find hadith №{number} in {collection}.",
+        "book": "Book",
+        "collection_context": "Collection Context",
+        "view_full_collection": "View Full Collection",
+        "understanding": "Understanding this Narration",
+        "understanding_text": "This narration from {collection} provides profound guidance for the believer. Scholars have noted that the context of this tradition is essential for its correct application.",
+        "share_link": "Share Link",
+        "print": "Print",
+        "report_error": "Report Error",
+        "previous": "Previous",
+        "next": "Next",
+        "grades": {
+            "sahih": "Sahih",
+            "hasan": "Hasan",
+            "daif": "Daif",
+            "mawdu": "Mawdu"
+        }
+    },
+    "Language": {
+        "select": "Select Language"
+    },
+    "Settings": {
+        "title": "Reading Settings",
+        "customize": "Customize your reading experience, adjust font sizes, and toggle translations.",
+        "open_settings": "Open Settings",
+        "theme": "Theme",
+        "themes": {
+            "light": "Light",
+            "sepia": "Sepia",
+            "dark": "Dark",
+            "contrast": "Contrast"
+        },
+        "text_size": "Text Size",
+        "level": "Level {level}",
+        "arabic_font": "Arabic Font",
+        "fonts": {
+            "amiri": "Amiri (Classic)",
+            "cairo": "Cairo (Modern)",
+            "traditional": "Traditional"
+        },
+        "toggles": {
+            "translations": "Translations",
+            "translations_desc": "Show/hide english text",
+            "narrator_chain": "Narrator Chain",
+            "narrator_chain_desc": "Show detailed isnad"
+        },
+        "reset": "Reset to Defaults"
+    },
+    "Footer": {
+        "description": "Connecting the Ummah with the authentic Sunnah through modern technology and beautiful design.",
+        "platform": "Platform",
+        "about": "About",
+        "mission": "Our Mission",
+        "methodology": "Methodology",
+        "privacy": "Privacy Policy",
+        "terms": "Terms of Use",
+        "rights": "© 2026 Mumin. All rights reserved. Built with ihsaan for the global Ummah."
     }
 }

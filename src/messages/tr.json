@@ -1,0 +1,122 @@
+{
+    "Home": {
+        "title": "Mumin Hadis Rehberi",
+        "companion": "Manevi Yoldaşınız",
+        "hero_title_1": "Peygamber",
+        "hero_title_2": "Hikmetiyle Bağlanın",
+        "hero_subtitle": "Hz. Muhammed'in (s.a.v.) sahih hadislerini okuyun, inceleyin ve üzerinde düşünün.",
+        "daily_hadith": "Günün Hadisi",
+        "refresh": "Yenile",
+        "explore_collections": "Koleksiyonları Keşfedin",
+        "explore_collections_subtitle": "Güvenilir kaynaklardan temel hadis kitaplarını keşfedin.",
+        "view_all": "Hepsini Gör",
+        "view_all_collections": "Tüm Koleksiyonları Gör",
+        "unable_load": "Günün hadisi yüklenemedi. Lütfen bağlantınızı kontrol edin."
+    },
+    "Navbar": {
+        "home": "Ana Sayfa",
+        "collections": "Koleksiyonlar",
+        "random": "Rastgele",
+        "search_placeholder": "Hadis ara...",
+        "bookmarks": "Yer İşaretleri",
+        "language": "Dil",
+        "settings": "Ayarlar",
+        "recent_searches": "Son Aramalar",
+        "clear": "Temizle",
+        "search_for": "Ara:",
+        "search_results": "Arama Sonuçları"
+    },
+    "Collections": {
+        "title": "Hadis Koleksiyonları",
+        "subtitle": "En sahih ve dünya çapında tanınan koleksiyonlara göz atın.",
+        "hadith_count": "{count} Hadis",
+        "library": "Kütüphane",
+        "filter_placeholder": "Koleksiyonları filtrele...",
+        "no_hadiths": "Hadis bulunamadı",
+        "no_hadiths_subtitle": "Aramanızı ayarlamayı deneyin veya tüm koleksiyonlara göz atın.",
+        "return_to_library": "Kütüphaneye Dön",
+        "browse_hadiths": "Bu sahih koleksiyondan tüm hadislere göz atın",
+        "search_within": "Bu koleksiyonda ara...",
+        "explore": "Keşfet",
+        "page_info": "Sayfa {page} / {total}",
+        "stats": {
+            "hadiths": "50bin+",
+            "hadiths_label": "Hadis",
+            "collections": "8",
+            "collections_label": "Koleksiyon",
+            "languages": "12+",
+            "languages_label": "Dil",
+            "authentic": "%100",
+            "authentic_label": "Sahih"
+        }
+    },
+    "Hadith": {
+        "translation": "Türkçe Çeviri",
+        "narrator": "Ravi: {narrator}",
+        "isnad": "İsnadı Göster",
+        "hide_isnad": "İsnadı Gizle",
+        "reference": "Referans",
+        "share": "Paylaş",
+        "copy": "Alıntıyı Kopyala",
+        "copied": "Panoya kopyalandı!",
+        "chain_of_narration": "Ravi Zinciri (İsnad)",
+        "not_found": "Hadis bulunamadı",
+        "not_found_message": "{collection} içinde {number} numaralı hadisi bulamadık.",
+        "book": "Kitap",
+        "collection_context": "Koleksiyon Bağlamı",
+        "view_full_collection": "Tam Koleksiyonu Görüntüle",
+        "understanding": "Bu Rivayeti Anlamak",
+        "understanding_text": "{collection}'den bu rivayet, mümin için derin bir rehberlik sağlar. Âlimler, bu geleneğin bağlamının doğru uygulanması için gerekli olduğunu belirtmişlerdir.",
+        "share_link": "Bağlantıyı Paylaş",
+        "print": "Yazdır",
+        "report_error": "Hata Bildir",
+        "previous": "Önceki",
+        "next": "Sonraki",
+        "grades": {
+            "sahih": "Sahih",
+            "hasan": "Hasan",
+            "daif": "Zayıf",
+            "mawdu": "Mevzu"
+        }
+    },
+    "Language": {
+        "select": "Dil Seçin"
+    },
+    "Settings": {
+        "title": "Okuma Ayarları",
+        "customize": "Okuma deneyiminizi kişiselleştirin, yazı tipi boyutlarını ayarlayın ve çevirileri açıp kapatın.",
+        "open_settings": "Ayarları Aç",
+        "theme": "Tema",
+        "themes": {
+            "light": "Açık",
+            "sepia": "Sepya",
+            "dark": "Koyu",
+            "contrast": "Kontrast"
+        },
+        "text_size": "Metin Boyutu",
+        "level": "Seviye {level}",
+        "arabic_font": "Arapça Yazı Tipi",
+        "fonts": {
+            "amiri": "Amiri (Klasik)",
+            "cairo": "Cairo (Modern)",
+            "traditional": "Geleneksel"
+        },
+        "toggles": {
+            "translations": "Çeviriler",
+            "translations_desc": "Çeviri metnini göster/gizle",
+            "narrator_chain": "Ravi Zinciri",
+            "narrator_chain_desc": "Detaylı isnadı göster"
+        },
+        "reset": "Varsayılana Sıfırla"
+    },
+    "Footer": {
+        "description": "Modern teknoloji ve güzel tasarım aracılığıyla Ümmeti sahih Sünnetle buluşturuyoruz.",
+        "platform": "Platform",
+        "about": "Hakkımızda",
+        "mission": "Misyonumuz",
+        "methodology": "Metodoloji",
+        "privacy": "Gizlilik Politikası",
+        "terms": "Kullanım Şartları",
+        "rights": "© 2026 Mumin. Tüm hakları saklıdır. Küresel Ümmet için ihsanla inşa edildi."
+    }
+}

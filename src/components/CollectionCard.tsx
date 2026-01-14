@@ -1,10 +1,11 @@
 'use client';
 
 import React from 'react';
-import Link from 'next/link';
+import { Link } from '@/lib/navigation';
 import { Book, Hash, ChevronRight } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { motion } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface CollectionCardProps {
     slug: string;
@@ -23,6 +24,9 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
     description,
     color = 'emerald',
 }) => {
+    const t = useTranslations('Collections');
+    const tHadith = useTranslations('Hadith');
+
     return (
         <motion.div
             whileHover={{ y: -5, scale: 1.02 }}
@@ -44,7 +48,7 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
                         <div className="px-3 py-1 bg-gold-500/10 rounded-full border border-gold-500/20">
                             <span className="text-[10px] font-bold text-gold-700 uppercase tracking-widest flex items-center gap-1">
                                 <Hash className="w-3 h-3" />
-                                {count.toLocaleString()} Hadiths
+                                {t('hadith_count', { count: count.toLocaleString() })}
                             </span>
                         </div>
                     </div>
@@ -66,9 +70,9 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
                         href={`/collections/${slug}`}
                         className="flex items-center gap-2 text-xs font-bold text-emerald-900 uppercase tracking-[0.2em] group-hover:gap-4 transition-all duration-500"
                         aria-label={`Open the ${nameEnglish} collection`}
-                        title={`Read Hadiths from ${nameEnglish}`}
+                        title={`${t('explore')} ${nameEnglish}`}
                     >
-                        Explore {nameEnglish}
+                        {t('explore')} {nameEnglish}
                         <ChevronRight className="w-4 h-4 text-gold-500" />
                     </Link>
                 </div>

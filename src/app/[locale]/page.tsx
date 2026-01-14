@@ -5,11 +5,11 @@ import { Navbar } from '@/components/Navbar';
 import { GeometricPattern } from '@/components/GeometricPattern';
 import { HadithCard } from '@/components/HadithCard';
 import { CollectionCard } from '@/components/CollectionCard';
-import { ReadingSettingsPanel } from '@/components/ReadingSettingsPanel';
 import { hadithApi, Hadith } from '@/lib/api/client';
 import { motion } from 'framer-motion';
 import { Sparkles, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
+import { Link, useRouter, usePathname } from '@/lib/navigation';
+import { useTranslations } from 'next-intl';
 
 const FEATURED_COLLECTIONS = [
   {
@@ -36,9 +36,11 @@ const FEATURED_COLLECTIONS = [
 ];
 
 export default function HomePage() {
+  const t = useTranslations('Home');
+  const tNav = useTranslations('Navbar');
+  const tFooter = useTranslations('Footer');
   const [dailyHadith, setDailyHadith] = useState<Hadith | null>(null);
   const [featuredCollections, setFeaturedCollections] = useState<any[]>([]);
-  const [isSettingsOpen, setIsSettingsOpen] = useState(false);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
@@ -49,7 +51,12 @@ export default function HomePage() {
           hadithApi.getCollections()
         ]);
         setDailyHadith(hadith);
-        setFeaturedCollections(collections.slice(0, 3));
+        if (Array.isArray(collections)) {
+          setFeaturedCollections(collections.slice(0, 3));
+        } else {
+          console.error('Collections is not an array:', collections);
+          setFeaturedCollections([]);
+        }
       } catch (err) {
         console.error('Failed to load data', err);
       } finally {
@@ -75,7 +82,7 @@ export default function HomePage() {
             >
               <span className="text-sm font-bold tracking-[0.3em] text-emerald-900 uppercase flex items-center gap-2">
                 <Sparkles className="w-4 h-4 text-gold-500" />
-                Your Spiritual Companion
+                {t('companion')}
               </span>
             </motion.div>
 
@@ -85,8 +92,8 @@ export default function HomePage() {
               transition={{ delay: 0.1 }}
               className="text-5xl md:text-7xl font-display font-bold text-emerald-900 mb-6 leading-tight"
             >
-              Connect with the <br />
-              <span className="gradient-text">Prophetic Wisdom</span>
+              {t('hero_title_1')} <br />
+              <span className="gradient-text">{t('hero_title_2')}</span>
             </motion.h1>
 
             <motion.p
@@ -95,18 +102,17 @@ export default function HomePage() {
               transition={{ delay: 0.2 }}
               className="text-xl text-emerald-900/60 max-w-2xl leading-relaxed"
             >
-              Read, study, and reflect upon the authentic traditions of the Prophet Muhammad (ﷺ)
-              in a beautiful and immersive environment.
+              {t('hero_subtitle')}
             </motion.p>
           </div>
 
           {/* Daily Hadith Hero Card */}
           <div className="max-w-4xl mx-auto mb-32">
             <div className="flex items-center justify-between mb-6">
-              <h2 className="text-2xl font-display font-bold text-emerald-900">Today's Hadith</h2>
+              <h2 className="text-2xl font-display font-bold text-emerald-900">{t('daily_hadith')}</h2>
               <div className="h-px flex-1 mx-8 bg-emerald-900/10" />
               <button className="text-sm font-bold text-emerald-900/40 hover:text-emerald-900 transition-colors uppercase tracking-widest flex items-center gap-2">
-                Refresh <ArrowRight className="w-4 h-4" />
+                {t('refresh')} <ArrowRight className="w-4 h-4" />
               </button>
             </div>
 
@@ -116,7 +122,7 @@ export default function HomePage() {
               <HadithCard hadith={dailyHadith} />
             ) : (
               <div className="p-12 text-center bg-white rounded-[3rem] border border-emerald-900/5">
-                <p className="text-emerald-900/40">Unable to load daily hadith. Please check your connection.</p>
+                <p className="text-emerald-900/40">{t('unable_load')}</p>
               </div>
             )}
           </div>
@@ -125,14 +131,14 @@ export default function HomePage() {
           <div className="mb-20">
             <div className="flex items-center justify-between mb-12">
               <div>
-                <h2 className="text-3xl font-display font-bold text-emerald-900 mb-2">Explore Collections</h2>
-                <p className="text-emerald-900/60">Discover the major books of Hadith from authentic sources.</p>
+                <h2 className="text-3xl font-display font-bold text-emerald-900 mb-2">{t('explore_collections')}</h2>
+                <p className="text-emerald-900/60">{t('explore_collections_subtitle')}</p>
               </div>
               <Link
                 href="/collections"
                 className="hidden md:flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-900 text-white font-bold text-sm tracking-widest uppercase hover:scale-105 transition-all shadow-lg"
               >
-                View All <ArrowRight className="w-4 h-4" />
+                {t('view_all')} <ArrowRight className="w-4 h-4" />
               </Link>
             </div>
 
@@ -160,7 +166,7 @@ export default function HomePage() {
                 href="/collections"
                 className="inline-flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-900 text-white font-bold text-sm tracking-widest uppercase shadow-lg"
               >
-                View All Collections
+                {t('view_all_collections')}
               </Link>
             </div>
           </div>
@@ -179,7 +185,7 @@ export default function HomePage() {
               <span className="text-2xl font-display font-bold">Mumin Hadith</span>
             </Link>
             <p className="text-emerald-100/60 max-w-sm leading-relaxed mb-8">
-              Connecting the Ummah with the authentic Sunnah through modern technology and beautiful design.
+              {tFooter('description')}
             </p>
             <div className="flex items-center gap-6">
               {/* Social Icons */}
@@ -187,35 +193,32 @@ export default function HomePage() {
           </div>
 
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-sm mb-6 text-gold-500">Platform</h4>
+            <h4 className="font-bold uppercase tracking-widest text-sm mb-6 text-gold-500">{tFooter('platform')}</h4>
             <ul className="space-y-4 text-emerald-100/60">
-              <li><Link href="/collections" className="hover:text-white transition-colors">Collections</Link></li>
-              <li><Link href="/random" className="hover:text-white transition-colors">Random Hadith</Link></li>
-              <li><Link href="/search" className="hover:text-white transition-colors">Search Results</Link></li>
-              <li><Link href="/bookmarks" className="hover:text-white transition-colors">Your Bookmarks</Link></li>
+              <li><Link href="/collections" className="hover:text-white transition-colors">{tNav('collections')}</Link></li>
+              <li><Link href="/random" className="hover:text-white transition-colors">{tNav('random')}</Link></li>
+              <li><Link href="/search" className="hover:text-white transition-colors">{tNav('search_results')}</Link></li>
+              <li><Link href="/bookmarks" className="hover:text-white transition-colors">{tNav('bookmarks')}</Link></li>
             </ul>
           </div>
 
           <div>
-            <h4 className="font-bold uppercase tracking-widest text-sm mb-6 text-gold-500">About</h4>
+            <h4 className="font-bold uppercase tracking-widest text-sm mb-6 text-gold-500">{tFooter('about')}</h4>
             <ul className="space-y-4 text-emerald-100/60">
-              <li><Link href="/about" className="hover:text-white transition-colors">Our Mission</Link></li>
-              <li><Link href="/methodology" className="hover:text-white transition-colors">Methodology</Link></li>
-              <li><Link href="/privacy" className="hover:text-white transition-colors">Privacy Policy</Link></li>
-              <li><Link href="/terms" className="hover:text-white transition-colors">Terms of Use</Link></li>
+              <li><Link href="/about" className="hover:text-white transition-colors">{tFooter('mission')}</Link></li>
+              <li><Link href="/methodology" className="hover:text-white transition-colors">{tFooter('methodology')}</Link></li>
+              <li><Link href="/privacy" className="hover:text-white transition-colors">{tFooter('privacy')}</Link></li>
+              <li><Link href="/terms" className="hover:text-white transition-colors">{tFooter('terms')}</Link></li>
             </ul>
           </div>
         </div>
 
         <div className="max-w-7xl mx-auto px-4 mt-20 pt-8 border-t border-white/5 text-center text-emerald-100/20 text-xs">
-          © 2026 Mumin. All rights reserved. Built with ihsaan for the global Ummah.
+          {tFooter('rights')}
         </div>
       </footer>
 
-      <ReadingSettingsPanel
-        isOpen={isSettingsOpen}
-        onClose={() => setIsSettingsOpen(false)}
-      />
+      {/* Reading settings are now global in layout */}
     </main>
   );
 }

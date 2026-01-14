@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import { useParams, useRouter } from 'next/navigation';
+import { useParams } from 'next/navigation';
 import { Navbar } from '@/components/Navbar';
 import { GeometricPattern } from '@/components/GeometricPattern';
 import { HadithCard } from '@/components/HadithCard';
@@ -17,9 +17,9 @@ import {
     Printer,
     Flag
 } from 'lucide-react';
-import Link from 'next/link';
-import { Metadata, ResolvingMetadata } from 'next';
+import { Link, useRouter, usePathname } from '@/lib/navigation';
 import { StructuredData, generateHadithSchema, generateBreadcrumbSchema } from '@/components/StructuredData';
+import { useTranslations } from 'next-intl';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mumin.ink';
 
@@ -35,69 +35,18 @@ const COLLECTION_NAMES: Record<string, string> = {
     'musnad-ahmad': 'Musnad Ahmad bin Hanbal',
 };
 
-export async function generateMetadata(
-    { params }: { params: { slug: string; number: string } }
-): Promise<Metadata> {
-    const slug = params.slug;
-    const number = parseInt(params.number);
-
-    const collectionName = COLLECTION_NAMES[slug] || slug.replace(/-/g, ' ');
-    let hadithTitle = `Hadith ${number} from ${collectionName}`;
-    let hadithDescription = `Read Hadith number ${number} from the collection ${collectionName}.`;
-
-    try {
-        const response = await hadithApi.getHadiths({
-            collection: collectionName,
-            hadithNumber: number,
-            limit: 1
-        });
-
-        if (response.data.length > 0) {
-            const hadith = response.data[0];
-            hadithTitle = `Hadith ${hadith.hadithNumber} - ${hadith.collection}`;
-            hadithDescription = hadith.translation?.text.substring(0, 160) + '...' || hadithDescription;
-        }
-    } catch (error) {
-        console.error('Failed to fetch hadith for metadata:', error);
-    }
-
-    const canonicalUrl = `${BASE_URL}/collections/${slug}/${number}`;
-
-    return {
-        title: hadithTitle,
-        description: hadithDescription,
-        alternates: {
-            canonical: canonicalUrl,
-        },
-        openGraph: {
-            title: hadithTitle,
-            description: hadithDescription,
-            url: canonicalUrl,
-            type: 'article',
-            siteName: 'Mumin Ink',
-            images: [
-                {
-                    url: `${BASE_URL}/api/og?title=${encodeURIComponent(hadithTitle)}`,
-                    width: 1200,
-                    height: 630,
-                    alt: hadithTitle,
-                },
-            ],
-        },
-        twitter: {
-            card: 'summary_large_image',
-            title: hadithTitle,
-            description: hadithDescription,
-            images: [`${BASE_URL}/api/og?title=${encodeURIComponent(hadithTitle)}`],
-        },
-    };
-}
+// This is a client component.
 
 export default function HadithDeepViewPage() {
     const params = useParams();
     const router = useRouter();
     const slug = params.slug as string;
     const number = parseInt(params.number as string);
+    const locale = params.locale as string || 'en';
+    const t = useTranslations('Hadith');
+    const tColl = useTranslations('Collections');
+    const tSettings = useTranslations('Settings');
+    const tNav = useTranslations('Navbar');
 
     const [hadith, setHadith] = useState<Hadith | null>(null);
     const [loading, setLoading] = useState(true);
@@ -108,20 +57,26 @@ export default function HadithDeepViewPage() {
             if (!slug || !number) return;
             setLoading(true);
             try {
-                const collectionName = COLLECTION_NAMES[slug] || slug.replace(/-/g, ' ');
+                // Use slug directly as it matches the database format
                 const response = await hadithApi.getHadiths({
-                    collection: collectionName,
+                    collection: slug,
                     hadithNumber: number,
-                    limit: 1
+                    limit: 1,
+                    language: locale
                 });
 
-                if (response.data.length > 0) {
-                    setHadith(response.data[0]);
+                // Handle nested response structure: { success, data: { data: [...], pagination } }
+                const responseData = response.data || response;
+                const hadiths = responseData.data || responseData;
+
+                if (Array.isArray(hadiths) && hadiths.length > 0) {
+                    setHadith(hadiths[0]);
                 } else {
                     setHadith(null);
                 }
             } catch (err) {
                 console.error('Failed to load hadith', err);
+                setHadith(null);
             } finally {
                 setLoading(false);
             }
@@ -142,10 +97,10 @@ export default function HadithDeepViewPage() {
                 <>
                     <StructuredData data={generateHadithSchema(hadith, BASE_URL)} />
                     <StructuredData data={generateBreadcrumbSchema([
-                        { name: 'Home', item: BASE_URL },
-                        { name: 'Collections', item: `${BASE_URL}/collections` },
+                        { name: tNav('home'), item: BASE_URL },
+                        { name: tNav('collections'), item: `${BASE_URL}/collections` },
                         { name: hadith.collection, item: `${BASE_URL}/collections/${slug}` },
-                        { name: `Hadith ${hadith.hadithNumber}`, item: `${BASE_URL}/collections/${slug}/${hadith.hadithNumber}` }
+                        { name: `${t('book')} ${hadith.hadithNumber}`, item: `${BASE_URL}/collections/${slug}/${hadith.hadithNumber}` }
                     ])} />
                 </>
             )}
@@ -157,7 +112,7 @@ export default function HadithDeepViewPage() {
                     {/* Breadcrumbs & Navigation */}
                     <div className="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-12">
                         <div className="flex items-center gap-3 text-sm font-bold uppercase tracking-widest text-emerald-900/40">
-                            <Link href="/collections" className="hover:text-emerald-900 transition-colors">Library</Link>
+                            <Link href="/collections" className="hover:text-emerald-900 transition-colors">{tColl('library')}</Link>
                             <ChevronRight className="w-3 h-3" />
                             {hadith && (
                                 <Link href={`/collections/${slug}`} className="hover:text-emerald-900 transition-colors">
@@ -165,7 +120,7 @@ export default function HadithDeepViewPage() {
                                 </Link>
                             )}
                             <ChevronRight className="w-3 h-3 text-emerald-900/10" />
-                            <span className="text-emerald-900">Hadith {number}</span>
+                            <span className="text-emerald-900">{t('book')} {number}</span>
                         </div>
 
                         <div className="flex items-center gap-2">
@@ -175,13 +130,13 @@ export default function HadithDeepViewPage() {
                                 className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-emerald-900/5 shadow-sm text-sm font-bold text-emerald-900 uppercase tracking-widest hover:border-emerald-600/20 disabled:opacity-30 disabled:cursor-not-allowed transition-all"
                             >
                                 <ChevronLeft className="w-4 h-4" />
-                                Previous
+                                {t('previous')}
                             </button>
                             <button
                                 onClick={() => navigateTo('next')}
                                 className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-emerald-900/5 shadow-sm text-sm font-bold text-emerald-900 uppercase tracking-widest hover:border-emerald-600/20 transition-all"
                             >
-                                Next
+                                {t('next')}
                                 <ChevronRight className="w-4 h-4" />
                             </button>
                         </div>
@@ -194,35 +149,35 @@ export default function HadithDeepViewPage() {
                                 <div className="p-8 rounded-[2.5rem] bg-white border border-emerald-900/5 shadow-islamic">
                                     <h3 className="text-lg font-display font-bold text-emerald-900 mb-6 flex items-center gap-2">
                                         <BookOpen className="w-5 h-5 text-gold-500" />
-                                        Collection Context
+                                        {t('collection_context')}
                                     </h3>
                                     <div className="space-y-6">
                                         <div>
-                                            <p className="text-[10px] font-bold text-emerald-900/30 uppercase tracking-[0.2em] mb-1">Book</p>
-                                            <p className="font-semibold text-emerald-900 leading-tight">Book {hadith?.bookNumber || '...'}</p>
+                                            <p className="text-[10px] font-bold text-emerald-900/30 uppercase tracking-[0.2em] mb-1">{t('book')}</p>
+                                            <p className="font-semibold text-emerald-900 leading-tight">{t('book')} {hadith?.bookNumber || '...'}</p>
                                         </div>
                                         <div>
-                                            <p className="text-[10px] font-bold text-emerald-900/30 uppercase tracking-[0.2em] mb-1">Collection</p>
+                                            <p className="text-[10px] font-bold text-emerald-900/30 uppercase tracking-[0.2em] mb-1">{tColl('title')}</p>
                                             <p className="text-sm text-emerald-900/60 leading-relaxed">{hadith?.collection || '...'}</p>
                                         </div>
                                     </div>
                                     <Link href={`/collections/${slug}`} className="block w-full mt-8 py-3 bg-emerald-900/5 hover:bg-emerald-900 hover:text-white text-emerald-900 font-bold rounded-xl text-center transition-all text-xs uppercase tracking-widest">
-                                        View Full Collection
+                                        {t('view_full_collection')}
                                     </Link>
                                 </div>
 
                                 <div className="p-8 rounded-[2.5rem] bg-emerald-900 text-white shadow-xl relative overflow-hidden">
                                     <div className="absolute top-0 right-0 w-32 h-32 bg-white/5 rounded-full -mr-16 -mt-16 blur-2xl" />
                                     <Settings className="w-8 h-8 text-gold-500 mb-4" />
-                                    <h3 className="text-xl font-display font-bold mb-4">Reading Settings</h3>
+                                    <h3 className="text-xl font-display font-bold mb-4">{tSettings('title')}</h3>
                                     <p className="text-emerald-100/60 text-sm leading-relaxed mb-6">
-                                        Customize fonts, sizes, and colors for a comfortable reading experience.
+                                        {tSettings('customize')}
                                     </p>
                                     <button
                                         onClick={() => setIsSettingsOpen(true)}
                                         className="w-full py-3 bg-white text-emerald-900 font-bold rounded-xl transition-all shadow-lg text-sm uppercase tracking-widest"
                                     >
-                                        Open Settings
+                                        {tSettings('open_settings')}
                                     </button>
                                 </div>
                             </div>
@@ -246,12 +201,11 @@ export default function HadithDeepViewPage() {
                                             <div className="w-8 h-8 rounded-lg bg-gold-500 flex items-center justify-center text-emerald-950">
                                                 <span className="font-bold">?</span>
                                             </div>
-                                            Understanding this Narration
+                                            {t('understanding')}
                                         </h3>
                                         <div className="space-y-6 text-emerald-950/70 leading-relaxed">
                                             <p>
-                                                This narration from {hadith.collection} provides profound guidance for the believer.
-                                                Scholars have noted that the context of this tradition is essential for its correct application.
+                                                {t('understanding_text', { collection: hadith.collection })}
                                             </p>
                                         </div>
                                     </motion.div>
@@ -260,23 +214,23 @@ export default function HadithDeepViewPage() {
                                     <div className="flex flex-wrap items-center gap-4 justify-center">
                                         <button className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-emerald-900/5 text-sm font-bold text-emerald-900/60 hover:text-emerald-900 transition-all uppercase tracking-widest">
                                             <Share2 className="w-4 h-4" />
-                                            Share Link
+                                            {t('share_link')}
                                         </button>
                                         <button className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-emerald-900/5 text-sm font-bold text-emerald-900/60 hover:text-emerald-900 transition-all uppercase tracking-widest">
                                             <Printer className="w-4 h-4" />
-                                            Print
+                                            {t('print')}
                                         </button>
                                         <button className="flex items-center gap-2 px-6 py-3 rounded-2xl bg-white border border-emerald-900/5 text-sm font-bold text-ruby hover:bg-ruby/5 transition-all uppercase tracking-widest">
                                             <Flag className="w-4 h-4" />
-                                            Report Error
+                                            {t('report_error')}
                                         </button>
                                     </div>
                                 </>
                             ) : (
                                 <div className="p-20 text-center bg-white rounded-[3rem] border border-emerald-900/5 shadow-islamic">
-                                    <h3 className="text-2xl font-display font-bold text-emerald-900 mb-4">Hadith not found</h3>
-                                    <p className="text-emerald-900/60 mb-8">We couldn't find hadith №{number} in {COLLECTION_NAMES[slug] || slug}.</p>
-                                    <Link href="/collections" className="text-emerald-600 font-bold uppercase tracking-widest text-sm">Return to Library</Link>
+                                    <h3 className="text-2xl font-display font-bold text-emerald-900 mb-4">{t('not_found')}</h3>
+                                    <p className="text-emerald-900/60 mb-8">{t('not_found_message', { number, collection: slug })}</p>
+                                    <Link href="/collections" className="text-emerald-600 font-bold uppercase tracking-widest text-sm">{tColl('return_to_library')}</Link>
                                 </div>
                             )}
                         </div>

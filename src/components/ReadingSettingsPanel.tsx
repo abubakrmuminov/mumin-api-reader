@@ -14,6 +14,7 @@ import {
 import { useReadingSettings, ReadingMode, ArabicFont } from '@/store/useReadingSettings';
 import { cn } from '@/lib/utils';
 import { motion, AnimatePresence } from 'framer-motion';
+import { useTranslations } from 'next-intl';
 
 interface ReadingSettingsPanelProps {
     isOpen: boolean;
@@ -42,6 +43,20 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
         showIsnad, toggleIsnad,
         resetSettings
     } = useReadingSettings();
+    const t = useTranslations('Settings');
+
+    const MODES: { value: ReadingMode; label: string; icon: any; className: string }[] = [
+        { value: 'light', label: t('themes.light'), icon: Sun, className: 'bg-white text-emerald-950 border-emerald-950/10' },
+        { value: 'sepia', label: t('themes.sepia'), icon: Coffee, className: 'bg-[#f4ecd8] text-[#433422] border-[#433422]/10' },
+        { value: 'dark', label: t('themes.dark'), icon: Moon, className: 'bg-[#0a1a16] text-[#e0e0e0] border-white/10' },
+        { value: 'contrast', label: t('themes.contrast'), icon: Eye, className: 'bg-black text-white border-white/20' },
+    ];
+
+    const FONTS: { value: ArabicFont; label: string }[] = [
+        { value: 'Amiri', label: t('fonts.amiri') },
+        { value: 'Cairo', label: t('fonts.cairo') },
+        { value: 'Traditional Arabic', label: t('fonts.traditional') },
+    ];
 
     return (
         <AnimatePresence>
@@ -63,7 +78,7 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
                     >
                         <div className="p-6">
                             <div className="flex items-center justify-between mb-8">
-                                <h2 className="text-2xl font-display font-bold text-emerald-900">Reading Settings</h2>
+                                <h2 className="text-2xl font-display font-bold text-emerald-900">{t('title')}</h2>
                                 <button
                                     onClick={onClose}
                                     className="p-2 hover:bg-emerald-900/5 rounded-full transition-colors"
@@ -74,7 +89,7 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
 
                             {/* Theme Mode */}
                             <div className="mb-8">
-                                <label className="text-sm font-semibold text-emerald-900/40 uppercase tracking-wider mb-4 block">Theme</label>
+                                <label className="text-sm font-semibold text-emerald-900/40 uppercase tracking-wider mb-4 block">{t('theme')}</label>
                                 <div className="grid grid-cols-2 gap-3">
                                     {MODES.map((m) => (
                                         <button
@@ -96,8 +111,8 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
                             {/* Text Size */}
                             <div className="mb-8">
                                 <div className="flex items-center justify-between mb-4">
-                                    <label className="text-sm font-semibold text-emerald-900/40 uppercase tracking-wider block">Text Size</label>
-                                    <span className="text-emerald-900 font-bold">Level {textSize}</span>
+                                    <label className="text-sm font-semibold text-emerald-900/40 uppercase tracking-wider block">{t('text_size')}</label>
+                                    <span className="text-emerald-900 font-bold">{t('level', { level: textSize })}</span>
                                 </div>
                                 <div className="flex items-center gap-4">
                                     <Type className="w-4 h-4 text-emerald-900/40" />
@@ -116,7 +131,7 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
 
                             {/* Arabic Font */}
                             <div className="mb-8">
-                                <label className="text-sm font-semibold text-emerald-900/40 uppercase tracking-wider mb-4 block">Arabic Font</label>
+                                <label className="text-sm font-semibold text-emerald-900/40 uppercase tracking-wider mb-4 block">{t('arabic_font')}</label>
                                 <div className="flex flex-col gap-2">
                                     {FONTS.map((f) => (
                                         <button
@@ -142,8 +157,8 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
                                     <div className="flex items-center gap-3">
                                         <Globe className="w-5 h-5 text-emerald-900/40" />
                                         <div>
-                                            <p className="font-medium text-emerald-900">Translations</p>
-                                            <p className="text-xs text-emerald-900/40">Show/hide english text</p>
+                                            <p className="font-medium text-emerald-900">{t('toggles.translations')}</p>
+                                            <p className="text-xs text-emerald-900/40">{t('toggles.translations_desc')}</p>
                                         </div>
                                     </div>
                                     <button
@@ -164,8 +179,8 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
                                     <div className="flex items-center gap-3">
                                         <Eye className="w-5 h-5 text-emerald-900/40" />
                                         <div>
-                                            <p className="font-medium text-emerald-900">Narrator Chain</p>
-                                            <p className="text-xs text-emerald-900/40">Show detailed isnad</p>
+                                            <p className="font-medium text-emerald-900">{t('toggles.narrator_chain')}</p>
+                                            <p className="text-xs text-emerald-900/40">{t('toggles.narrator_chain_desc')}</p>
                                         </div>
                                     </div>
                                     <button
@@ -187,7 +202,7 @@ export const ReadingSettingsPanel: React.FC<ReadingSettingsPanelProps> = ({ isOp
                                 onClick={resetSettings}
                                 className="w-full p-4 rounded-2xl text-emerald-600 font-semibold hover:bg-emerald-600/5 transition-colors border border-emerald-600/20"
                             >
-                                Reset to Defaults
+                                {t('reset')}
                             </button>
                         </div>
                     </motion.div>

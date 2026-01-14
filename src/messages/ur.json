@@ -1,0 +1,122 @@
+{
+    "Home": {
+        "title": "Mumin Hadith Reader",
+        "companion": "آپ کا روحانی ساتھی",
+        "hero_title_1": "نبوی حکمت",
+        "hero_title_2": "سے جڑیں",
+        "hero_subtitle": "نبی محمد ﷺ کی مستند احادیث کو پڑھیں، مطالعہ کریں اور غور کریں۔",
+        "daily_hadith": "آج کی حدیث",
+        "refresh": "تازہ کریں",
+        "explore_collections": "مجموعے دریافت کریں",
+        "explore_collections_subtitle": "مستند ذرائع سے حدیث کی بڑی کتب دریافت کریں۔",
+        "view_all": "سب دیکھیں",
+        "view_all_collections": "تمام مجموعے دیکھیں",
+        "unable_load": "آج کی حدیث لوڈ کرنے میں ناکام۔ براہ کرم اپنا انٹرنیٹ چیک کریں۔"
+    },
+    "Navbar": {
+        "home": "ہوم",
+        "collections": "مجموعے",
+        "random": "بے ترتیب",
+        "search_placeholder": "احادیث تلاش کریں...",
+        "bookmarks": "بک مارکس",
+        "language": "زبان",
+        "settings": "ترتیبات",
+        "recent_searches": "حالیہ تلاشیں",
+        "clear": "صاف کریں",
+        "search_for": "تلاش کریں",
+        "search_results": "تلاش کے نتائج"
+    },
+    "Collections": {
+        "title": "احادیث کے مجموعے",
+        "subtitle": "سب سے مستند اور عالمی سطح پر تسلیم شدہ مجموعوں کو دیکھیں۔",
+        "hadith_count": "{count} احادیث",
+        "library": "لائبریری",
+        "filter_placeholder": "مجموعے فلٹر کریں...",
+        "no_hadiths": "کوئی حدیث نہیں ملی",
+        "no_hadiths_subtitle": "اپنی تلاش کو تبدیل کریں یا تمام مجموعے دیکھیں۔",
+        "return_to_library": "لائبریری میں واپس جائیں",
+        "browse_hadiths": "اس مستند مجموعے کی تمام احادیث دیکھیں",
+        "search_within": "اس مجموعے میں تلاش کریں...",
+        "explore": "دریافت کریں",
+        "page_info": "صفحہ {page} کا {total}",
+        "stats": {
+            "hadiths": "50 ہزار+",
+            "hadiths_label": "احادیث",
+            "collections": "8",
+            "collections_label": "مجموعے",
+            "languages": "12+",
+            "languages_label": "زبانیں",
+            "authentic": "100%",
+            "authentic_label": "مستند"
+        }
+    },
+    "Hadith": {
+        "translation": "اردو ترجمہ",
+        "narrator": "راوی: {narrator}",
+        "isnad": "اسناد دکھائیں",
+        "hide_isnad": "اسناد چھپائیں",
+        "reference": "حوالہ",
+        "share": "شیئر کریں",
+        "copy": "اقتباس کاپی کریں",
+        "copied": "کلپ بورڈ میں کاپی ہو گیا!",
+        "chain_of_narration": "راویوں کا سلسلہ (اسناد)",
+        "not_found": "حدیث نہیں ملی",
+        "not_found_message": "ہمیں {collection} میں حدیث نمبر {number} نہیں مل سکی۔",
+        "book": "کتاب",
+        "collection_context": "مجموعے کا سیاق و سباق",
+        "view_full_collection": "مکمل مجموعہ دیکھیں",
+        "understanding": "اس روایت کو سمجھنا",
+        "understanding_text": "{collection} سے یہ روایت مومن کے لیے گہری رہنمائی فراہم کرتی ہے۔ علماء نے نوٹ کیا ہے کہ اس روایت کا سیاق و سباق اس کے صحیح اطلاق کے لیے ضروری ہے۔",
+        "share_link": "لنک شیئر کریں",
+        "print": "پرنٹ کریں",
+        "report_error": "غلطی کی اطلاع دیں",
+        "previous": "پچھلا",
+        "next": "اگلا",
+        "grades": {
+            "sahih": "صحیح",
+            "hasan": "حسن",
+            "daif": "ضعیف",
+            "mawdu": "موضوع"
+        }
+    },
+    "Language": {
+        "select": "زبان منتخب کریں"
+    },
+    "Settings": {
+        "title": "پڑھنے کی ترتیبات",
+        "customize": "اپنے پڑھنے کے تجربے کو حسب ضرورت بنائیں، فونٹ کے سائز کو ایڈجسٹ کریں، اور ترجمے کو تبدیل کریں۔",
+        "open_settings": "ترتیبات کھولیں",
+        "theme": "تھیم",
+        "themes": {
+            "light": "روشن",
+            "sepia": "سیپیا",
+            "dark": "تاریک",
+            "contrast": "کونٹرسٹ"
+        },
+        "text_size": "تحریر کا سائز",
+        "level": "لیول {level}",
+        "arabic_font": "عربی فونٹ",
+        "fonts": {
+            "amiri": "امیری (کلاسیکی)",
+            "cairo": "قاہرہ (جدید)",
+            "traditional": "روایتی عربی"
+        },
+        "toggles": {
+            "translations": "ترجمہ",
+            "translations_desc": "ترجمہ چھپائیں یا دکھائیں",
+            "narrator_chain": "راویوں کا سلسلہ",
+            "narrator_chain_desc": "تفصیلی اسناد دکھائیں"
+        },
+        "reset": "ترتیبات ری سیٹ کریں"
+    },
+    "Footer": {
+        "description": "جدید ٹیکنالوجی اور خوبصورت ڈیزائن کے ذریعے امت کو مستند سنت سے جوڑنا۔",
+        "platform": "پلیٹ فارم",
+        "about": "ہمارے بارے میں",
+        "mission": "ہمارا مشن",
+        "methodology": "طریقہ کار",
+        "privacy": "رازداری کی پالیسی",
+        "terms": "استعمال کی شرائط",
+        "rights": "© 2026 مومن۔ جملہ حقوق محفوظ ہیں۔ عالمی امت کے لیے احسان کے ساتھ بنایا گیا۔"
+    }
+}

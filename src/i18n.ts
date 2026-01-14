@@ -5,9 +5,11 @@ export const locales = ['en', 'ar', 'ru', 'ur', 'tr', 'id'];
 export const defaultLocale = 'en';
 
 export default getRequestConfig(async ({ locale }) => {
-    if (!locales.includes(locale as any)) notFound();
+    const activeLocale = locale || defaultLocale;
+    if (!locales.includes(activeLocale as any)) notFound();
 
     return {
-        messages: (await import(`./messages/${locale}.json`)).default
+        locale: activeLocale,
+        messages: (await import(`./messages/${activeLocale}.json`)).default
     };
 });

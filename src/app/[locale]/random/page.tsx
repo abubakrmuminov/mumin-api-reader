@@ -9,20 +9,11 @@ import { hadithApi, Hadith } from '@/lib/api/client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Shuffle, Sparkles, Filter, ChevronRight } from 'lucide-react';
 import Link from 'next/link';
-import { Metadata } from 'next';
 import { StructuredData, generateBreadcrumbSchema } from '@/components/StructuredData';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mumin.ink';
 
-export const metadata: Metadata = {
-    title: 'Random Hadith Discovery',
-    description: 'Let the spiritual wisdom guide you. Discover random authentic hadiths for daily reflection.',
-    openGraph: {
-        title: 'Random Hadith Discovery | Mumin',
-        description: 'Daily spiritual reflection through random authentic hadiths.',
-        images: ['/og-random.jpg'],
-    }
-};
+// This is a client-side only component.
 
 export default function RandomHadithPage() {
     const [hadith, setHadith] = useState<Hadith | null>(null);

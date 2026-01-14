@@ -9,21 +9,15 @@ import { hadithApi, Hadith, PaginatedResponse } from '@/lib/api/client';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Filter, Search as SearchIcon, SlidersHorizontal, AlertCircle } from 'lucide-react';
 import { cn } from '@/lib/utils';
-import { Metadata } from 'next';
 import { StructuredData, generateBreadcrumbSchema } from '@/components/StructuredData';
 
 const BASE_URL = process.env.NEXT_PUBLIC_BASE_URL || 'https://mumin.ink';
 
-export function generateMetadata({ searchParams }: { searchParams: { q?: string } }): Metadata {
-    const query = searchParams.q || '';
-    const title = query ? `Search results for "${query}"` : 'Search Hadiths';
+// This is a client-side only component. The server-side metadata and page structure 
+// are handled in a separate server component file if needed.
+// However, in Next.js 13+ App Router, you can't export metadata from a 'use client' file.
+// We will separate the metadata to a parent server component or metadata file.
 
-    return {
-        title,
-        description: `Browse authentic hadith search results for ${query || 'your favorite topics'}. Discover Prophetic wisdom.`,
-        robots: { index: false, follow: true }, // Usually, we don't want search results pages indexed to avoid thin content, but we want links followed.
-    };
-}
 
 export default function SearchResultsPage() {
     const searchParams = useSearchParams();

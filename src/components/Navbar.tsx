@@ -1,8 +1,7 @@
 'use client';
 
 import React, { useState, useEffect } from 'react';
-import Link from 'next/navigation';
-import { usePathname } from 'next/navigation';
+import { Link, useRouter, usePathname } from '@/lib/navigation';
 import {
     Home,
     BookOpen,
@@ -16,18 +15,24 @@ import {
 import { SearchBar } from './SearchBar';
 import { cn } from '@/lib/utils';
 import { useReadingSettings } from '@/store/useReadingSettings';
+import { useTranslations } from 'next-intl';
+import { useUIStore } from '@/store/useUIStore';
 
-const navLinks = [
-    { name: 'Home', href: '/', icon: Home },
-    { name: 'Collections', href: '/collections', icon: BookOpen },
-    { name: 'Random', href: '/random', icon: Shuffle },
-];
+// navLinks are moved inside the component to use translations
 
 export const Navbar: React.FC = () => {
+    const t = useTranslations('Navbar');
     const pathname = usePathname();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const resetSettings = useReadingSettings((state) => state.resetSettings);
+    const { toggleSettings, toggleLanguage } = useUIStore();
+
+    const navLinks = [
+        { name: t('home'), href: '/', icon: Home },
+        { name: t('collections'), href: '/collections', icon: BookOpen },
+        { name: t('random'), href: '/random', icon: Shuffle },
+    ];
 
     useEffect(() => {
         const handleScroll = () => {
@@ -89,22 +94,23 @@ export const Navbar: React.FC = () => {
                     <Link
                         href="/bookmarks"
                         className="p-2 text-emerald-900/60 hover:text-emerald-900 hover:bg-emerald-900/5 rounded-full transition-colors relative"
-                        title="Bookmarks"
+                        title={t('bookmarks')}
                     >
                         <Bookmark className="w-5 h-5" />
                     </Link>
 
                     <button
+                        onClick={toggleLanguage}
                         className="p-2 text-emerald-900/60 hover:text-emerald-900 hover:bg-emerald-900/5 rounded-full transition-colors"
-                        title="Language"
+                        title={t('language')}
                     >
                         <Globe className="w-5 h-5" />
                     </button>
 
                     <button
-                        onClick={() => {/* Toggle Reading Panel */ }}
+                        onClick={toggleSettings}
                         className="p-2 text-emerald-900/60 hover:text-emerald-900 hover:bg-emerald-900/5 rounded-full transition-colors"
-                        title="Settings"
+                        title={t('settings')}
                     >
                         <Settings className="w-5 h-5" />
                     </button>
@@ -153,7 +159,7 @@ export const Navbar: React.FC = () => {
                             )}
                         >
                             <Bookmark className="w-6 h-6" />
-                            Bookmarks
+                            {t('bookmarks')}
                         </Link>
                     </div>
                 </div>

@@ -4,12 +4,14 @@ import React, { useState, useEffect } from 'react';
 import { Search, X, History } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { cn } from '@/lib/utils';
+import { useTranslations } from 'next-intl';
 
 export const SearchBar: React.FC<{ className?: string }> = ({ className }) => {
     const [query, setQuery] = useState('');
     const [isFocused, setIsFocused] = useState(false);
     const [history, setHistory] = useState<string[]>([]);
     const router = useRouter();
+    const t = useTranslations('Navbar');
 
     useEffect(() => {
         const savedHistory = localStorage.getItem('mumin_search_history');
@@ -44,7 +46,7 @@ export const SearchBar: React.FC<{ className?: string }> = ({ className }) => {
                     value={query}
                     onChange={(e) => setQuery(e.target.value)}
                     onFocus={() => setIsFocused(true)}
-                    placeholder="Search hadiths..."
+                    placeholder={t('search_placeholder')}
                     className={cn(
                         "w-full h-10 pl-10 pr-10 bg-white/50 backdrop-blur-md rounded-full border border-emerald-900/10 focus:outline-none focus:ring-2 focus:ring-emerald-600/20 focus:bg-white transition-all",
                         isFocused && "shadow-lg border-emerald-600/30"
@@ -73,8 +75,8 @@ export const SearchBar: React.FC<{ className?: string }> = ({ className }) => {
                         {history.length > 0 && !query && (
                             <div className="p-2">
                                 <div className="flex items-center justify-between px-3 py-2 text-xs font-semibold text-emerald-900/40 uppercase tracking-wider">
-                                    <span>Recent Searches</span>
-                                    <button onClick={clearHistory} className="hover:text-emerald-600">Clear</button>
+                                    <span>{t('recent_searches')}</span>
+                                    <button onClick={clearHistory} className="hover:text-emerald-600">{t('clear')}</button>
                                 </div>
                                 {history.map((item) => (
                                     <button
@@ -99,7 +101,7 @@ export const SearchBar: React.FC<{ className?: string }> = ({ className }) => {
                                     className="flex items-center gap-3 w-full px-3 py-3 hover:bg-emerald-50 rounded-lg transition-colors text-left group"
                                 >
                                     <Search className="w-4 h-4 text-emerald-600" />
-                                    <span className="text-sm">Search for <span className="font-semibold">"{query}"</span></span>
+                                    <span className="text-sm">{t('search_for')} <span className="font-semibold">"{query}"</span></span>
                                 </button>
                             </div>
                         )}

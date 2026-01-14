@@ -1,14 +1,27 @@
 import axios, { AxiosError } from 'axios';
 
-const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3000/v1';
+const API_URL = process.env.NEXT_PUBLIC_API_URL || 'http://localhost:3333/v1';
 
 export const apiClient = axios.create({
     baseURL: API_URL,
     headers: {
         'Content-Type': 'application/json',
-        'Authorization': `Bearer ${process.env.NEXT_PUBLIC_API_KEY}`,
     },
 });
+
+// Request interceptor для добавления API ключа
+apiClient.interceptors.request.use(
+    (config) => {
+        const apiKey = process.env.NEXT_PUBLIC_API_KEY;
+        if (apiKey) {
+            config.headers['X-API-Key'] = apiKey;
+        }
+        return config;
+    },
+    (error) => {
+        return Promise.reject(error);
+    }
+);
 
 // Error handling interceptor
 apiClient.interceptors.response.use(
@@ -78,37 +91,37 @@ export const hadithApi = {
         hadithNumber?: number;
         language?: string;
     }) => {
-        const response = await apiClient.get<PaginatedResponse<Hadith>>('/hadiths', { params });
-        return response.data;
+        const response = await apiClient.get<any>('/hadiths', { params });
+        return response.data.data ? response.data : response.data; // Return full response for pagination handling in component
     },
 
     getHadithById: async (id: number, language: string = 'en') => {
-        const response = await apiClient.get<Hadith>(`/hadiths/${id}`, { params: { language } });
-        return response.data;
+        const response = await apiClient.get<any>(`/hadiths/${id}`, { params: { language } });
+        return response.data.data || response.data;
     },
 
     getRandomHadith: async (params?: { language?: string; collection?: string; grade?: string }) => {
-        const response = await apiClient.get<Hadith>('/hadiths/random', { params });
-        return response.data;
+        const response = await apiClient.get<any>('/hadiths/random', { params });
+        return response.data.data || response.data;
     },
 
     searchHadiths: async (params: { q: string; language?: string; page?: number; limit?: number }) => {
-        const response = await apiClient.get<PaginatedResponse<Hadith>>('/hadiths/search', { params });
-        return response.data;
+        const response = await apiClient.get<any>('/hadiths/search', { params });
+        return response.data.data ? response.data : response.data;
     },
 
     getDailyHadith: async (language: string = 'en') => {
-        const response = await apiClient.get<Hadith>('/hadiths/daily', { params: { language } });
-        return response.data;
+        const response = await apiClient.get<any>('/hadiths/daily', { params: { language } });
+        return response.data.data || response.data;
     },
 
     getCollections: async () => {
-        const response = await apiClient.get<any[]>('/collections');
-        return response.data;
+        const response = await apiClient.get<any>('/collections');
+        return response.data.data || response.data;
     },
 
     getCollectionBySlug: async (slug: string) => {
         const response = await apiClient.get<any>(`/collections/${slug}`);
-        return response.data;
+        return response.data.data || response.data;
     },
 };
