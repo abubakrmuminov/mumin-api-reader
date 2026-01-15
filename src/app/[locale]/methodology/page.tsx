@@ -93,7 +93,7 @@ export default async function MethodologyPage({ params }: { params: Promise<{ lo
                                 We are always looking for contributors and scholars to help us serve the Ummah better.
                             </p>
                             <a
-                                href="mailto:contact@mumin.ink"
+                                href="mailto:nur@mumin.ink"
                                 className="inline-flex items-center gap-2 px-8 py-4 rounded-xl bg-white text-emerald-900 font-bold hover:scale-105 transition-transform"
                             >
                                 Contact Us
