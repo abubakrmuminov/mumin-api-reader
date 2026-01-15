@@ -119,6 +119,18 @@
         "terms": "Ketentuan Penggunaan",
         "rights": "© 2026 Mumin. Seluruh hak cipta dilindungi. Dibangun dengan ihsaan untuk Ummah global."
     },
+    "Methodology": {
+        "title": "Metodologi Kami",
+        "description": "Komitmen kami terhadap keotentikan, ketelitian ilmiah, dan keunggulan digital.",
+        "sources_title": "Sumber Terpercaya",
+        "sources_desc": "Kami mengambil hadits kami secara eksklusif dari koleksi yang paling terpercaya dan diakui secara kanonik dalam tradisi Islam, yang dikenal sebagai 'Kutubus Sittah' (Enam Kitab) dan karya-karya besar lainnya yang diverifikasi oleh para ulama.",
+        "verification_title": "Proses Verifikasi",
+        "verification_desc": "Setiap hadits menjalani proses verifikasi digital yang ketat. Kami merujuk silang teks bahasa Arab dengan manuskrip yang mapan dan menggunakan terjemahan terkemuka untuk memastikan keakuratan makna.",
+        "tech_title": "Pelestarian Digital",
+        "tech_desc": "Dengan memanfaatkan teknologi web modern, kami bertujuan untuk melestarikan teks-teks suci ini dalam format yang dapat diakses, dapat dicari, dan tahan lama untuk generasi mendatang.",
+        "global_title": "Aksesibilitas Global",
+        "global_desc": "Mendobrak hambatan bahasa dengan menyediakan terjemahan berkualitas tinggi dalam berbagai bahasa, menjadikan hikmah Nabi dapat diakses oleh seluruh Umat."
+    },
     "Search": {
         "title": "Hasil Pencarian",
         "results_for": "Hasil untuk \"{query}\"",

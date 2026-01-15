@@ -119,6 +119,18 @@
         "terms": "Kullanım Şartları",
         "rights": "© 2026 Mumin. Tüm hakları saklıdır. Küresel Ümmet için ihsanla inşa edildi."
     },
+    "Methodology": {
+        "title": "Metodolojimiz",
+        "description": "Sıhhat, ilmi titizlik ve dijital mükemmelliğe olan bağlılığımız.",
+        "sources_title": "Sahih Kaynaklar",
+        "sources_desc": "Hadislerimizi yalnızca İslam geleneğindeki en güvenilir ve kabul görmüş koleksiyonlardan, 'Kütüb-i Sitte' (Altı Kitap) ve alimler tarafından doğrulanan diğer temel eserlerden alıyoruz.",
+        "verification_title": "Doğrulama Süreci",
+        "verification_desc": "Her hadis titiz bir dijital doğrulama sürecinden geçer. Arapça metinleri yerleşik el yazmalarıyla karşılaştırıyor ve anlamın doğruluğunu sağlamak için saygın çeviriler kullanıyoruz.",
+        "tech_title": "Dijital Koruma",
+        "tech_desc": "Modern web teknolojilerinden yararlanarak, bu kutsal metinleri erişilebilir, aranabilir ve gelecek nesiller için kalıcı bir formatta korumayı amaçlıyoruz.",
+        "global_title": "Küresel Erişim",
+        "global_desc": "Birden fazla dilde yüksek kaliteli çeviriler sağlayarak dil engellerini aşıyor, Peygamberi hikmeti tüm Ümmet için erişilebilir kılıyoruz."
+    },
     "Search": {
         "title": "Arama Sonuçları",
         "results_for": "\"{query}\" için sonuçlar",
