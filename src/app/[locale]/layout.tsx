@@ -69,7 +69,7 @@ export const metadata: Metadata = {
     siteName: "Mumin Hadith",
     images: [
       {
-        url: "/og-image.jpg", // Placeholder until dynamic OG is ready
+        url: "/og-image.png", // This will be handled by dynamic opengraph-image.tsx mostly, but good to have a fallback
         width: 1200,
         height: 630,
         alt: "Mumin Hadith Reader",
@@ -82,7 +82,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Mumin Hadith Reader",
     description: "Connect with the Prophetic Wisdom.",
-    images: ["/og-image.jpg"],
+    images: ["/og-image.png"],
   },
   robots: {
     index: true,
