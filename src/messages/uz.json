@@ -1,0 +1,151 @@
+{
+    "Home": {
+        "title": "Mumin Hadith Reader",
+        "companion": "Sizning Ruhiy Hamrohingiz",
+        "hero_title_1": "Bog'laning",
+        "hero_title_2": "Payg'ambar Hikmati bilan",
+        "hero_subtitle": "Payg'ambarimiz Muhammad (s.a.v.)ning sahih hadislarini o'qing, o'rganing va ular ustida fikr yuriting.",
+        "daily_hadith": "Kun Hadisi",
+        "refresh": "Yangilash",
+        "explore_collections": "To'plamlarni O'rganing",
+        "explore_collections_subtitle": "Ishonchli manbalardan asosiy hadis kitoblarini kashf eting.",
+        "view_all": "Hammasini Ko'rish",
+        "view_all_collections": "Barcha To'plamlar",
+        "unable_load": "Kun hadisini yuklab bo'lmadi. Iltimos, aloqangizni tekshiring."
+    },
+    "Navbar": {
+        "home": "Bosh Sahifa",
+        "collections": "To'plamlar",
+        "random": "Tasodifiy",
+        "search_placeholder": "Hadislarni qidirish...",
+        "bookmarks": "Xatcho'plar",
+        "language": "Til",
+        "settings": "Sozlamalar",
+        "recent_searches": "Oxirgi Qidiruvlar",
+        "clear": "Tozalash",
+        "search_for": "Qidirish",
+        "search_results": "Qidiruv Natijalari"
+    },
+    "Collections": {
+        "title": "Hadis To'plamlari",
+        "subtitle": "Eng ishonchli va dunyo miqyosida tan olingan to'plamlarni ko'rib chiqing.",
+        "hadith_count": "{count} Hadis",
+        "library": "Kutubxona",
+        "filter_placeholder": "To'plamlarni filtrlash...",
+        "no_hadiths": "Hadislar topilmadi",
+        "no_hadiths_subtitle": "Qidiruvingizni o'zgartirib ko'ring yoki barcha to'plamlarni ko'rib chiqing.",
+        "return_to_library": "Kutubxonaga qaytish",
+        "browse_hadiths": "Ushbu sahih to'plamdagi barcha hadislarni ko'rib chiqing",
+        "search_within": "Ushbu to'plamda qidirish...",
+        "explore": "O'rganish",
+        "page_info": "{page}-sahifa, jami {total}",
+        "stats": {
+            "hadiths": "50ming+",
+            "hadiths_label": "Hadislar",
+            "collections": "8",
+            "collections_label": "To'plamlar",
+            "languages": "12+",
+            "languages_label": "Tillar",
+            "authentic": "100%",
+            "authentic_label": "Ishonchli"
+        }
+    },
+    "Hadith": {
+        "translation": "O'zbekcha Tarjima",
+        "narrator": "Rivoyat qiladi {narrator}",
+        "isnad": "Isnadni Ko'rsatish",
+        "hide_isnad": "Isnadni Yashirish",
+        "reference": "Manba",
+        "share": "Ulashish",
+        "copy": "Iqtibosni Nusxalash",
+        "copied": "Buferga nusxalandi!",
+        "chain_of_narration": "Roviylar zanjiri (Isnad)",
+        "not_found": "Hadis topilmadi",
+        "not_found_message": "Biz {collection} to'plamida №{number} hadisni topa olmadik.",
+        "book": "Kitob",
+        "collection_context": "To'plam Konteksti",
+        "view_full_collection": "To'liq To'plamni Ko'rish",
+        "understanding": "Ushbu Rivoyatni Tushunish",
+        "understanding_text": "{collection} dan olingan ushbu rivoyat mo'min uchun chuqur yo'l-yo'riq beradi. Olimlar ushbu an'ananing konteksti uning to'g'ri qo'llanilishi uchun muhimligini ta'kidlashgan.",
+        "share_link": "Havolani Ulashish",
+        "print": "Chop etish",
+        "report_error": "Xato haqida xabar berish",
+        "previous": "Oldingi",
+        "next": "Keyingi",
+        "grades": {
+            "sahih": "Sahih",
+            "hasan": "Hasan",
+            "daif": "Zaif",
+            "mawdu": "Mavzu"
+        }
+    },
+    "Language": {
+        "select": "Tilni Tanlang"
+    },
+    "Settings": {
+        "title": "O'qish Sozlamalari",
+        "customize": "O'qish tajribangizni moslashtiring, shrift o'lchamlarini o'zgartiring va tarjimalarni yoqing/o'chiring.",
+        "open_settings": "Sozlamalarni Ochish",
+        "theme": "Mavzu",
+        "themes": {
+            "light": "Yorug'",
+            "sepia": "Sepiya",
+            "dark": "Qorong'i",
+            "contrast": "Kontrast"
+        },
+        "text_size": "Matn O'lchami",
+        "level": "Daraja {level}",
+        "arabic_font": "Arabcha Shrift",
+        "fonts": {
+            "amiri": "Amiri (Klassik)",
+            "cairo": "Cairo (Zamonaviy)",
+            "traditional": "An'anaviy"
+        },
+        "toggles": {
+            "translations": "Tarjimalar",
+            "translations_desc": "Tarjima matnini ko'rsatish/yashirish",
+            "narrator_chain": "Roviylar Zanjiri",
+            "narrator_chain_desc": "Batafsil isnadni ko'rsatish"
+        },
+        "reset": "Sozlamalarni Tiklash"
+    },
+    "Footer": {
+        "description": "Zamonaviy texnologiyalar va go'zal dizayn orqali Ummatni ishonchli Sunnat bilan bog'lash.",
+        "platform": "Platforma",
+        "about": "Biz haqimizda",
+        "mission": "Bizning vazifamiz",
+        "methodology": "Metodologiya",
+        "privacy": "Maxfiylik Siyosati",
+        "terms": "Foydalanish Shartlari",
+        "rights": "© 2026 Mumin. Barcha huquqlar himoyalangan. Global Ummat uchun ehson bilan qurilgan."
+    },
+    "Methodology": {
+        "title": "Bizning Metodologiyamiz",
+        "description": "Ishonchlilik, ilmiy aniqlik va raqamli mukammallikka sodiqligimiz.",
+        "sources_title": "Ishonchli Manbalar",
+        "sources_desc": "Biz hadislarimizni faqat Islom an'anasidagi eng ishonchli va tan olingan to'plamlardan, 'Kutub as-Sitta' (Olti Kitob) va olimlar tomonidan tasdiqlangan boshqa yirik asarlardan olamiz.",
+        "verification_title": "Tekshirish Jarayoni",
+        "verification_desc": "Har bir hadis qattiq raqamli tekshirish jarayonidan o'tadi. Biz arabcha matnlarni belgilangan qo'lyozmalar bilan solishtiramiz va ma'no aniqligini ta'minlash uchun nufuzli tarjimalardan foydalanamiz.",
+        "tech_title": "Raqamli Saqlash",
+        "tech_desc": "Zamonaviy veb-texnologiyalardan foydalanib, biz ushbu muqaddas matnlarni kelajak avlodlar uchun ochiq, qidiriladigan va barqaror formatda saqlashni maqsad qilganmiz.",
+        "global_title": "Global Ochiqlik",
+        "global_desc": "Ko'plab tillarda yuqori sifatli tarjimalarni taqdim etish orqali til to'siqlarini yengish va Payg'ambar hikmatini butun Ummat uchun ochiq qilish."
+    },
+    "Search": {
+        "title": "Qidiruv Natijalari",
+        "results_for": "\"{query}\" bo'yicha natijalar",
+        "all_hadiths": "Barcha Hadislar",
+        "found_results": "{count} natija topildi",
+        "showing_page": "{page}-sahifa ko'rsatilmoqda, jami {total}",
+        "filters": "Filtrlar",
+        "collections": "To'plamlar",
+        "advanced_search": "Kengaytirilgan Qidiruv",
+        "advanced_search_desc": "Qidiruvingizni aniq roviylar, manbalar yoki mavzular bo'yicha aniqlang.",
+        "try_it_now": "Sinab ko'ring",
+        "no_results": "Natija topilmadi",
+        "no_results_desc": "So'rovingizga mos hadis topa olmadik. Boshqa kalit so'zlarni sinab ko'ring yoki to'plamlarni ko'rib chiqing.",
+        "clear_search": "Qidiruvni Tozalash",
+        "error": "Qidiruv Xatosi",
+        "error_desc": "Qidiruv natijalarini olib kelishda xatolik yuz berdi. Iltimos, qayta urinib ko'ring."
+    }
+}

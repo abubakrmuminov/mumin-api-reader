@@ -20,6 +20,7 @@ const LANGUAGE_NAMES: Record<string, { name: string; native: string }> = {
     ur: { name: 'Urdu', native: 'اردو' },
     tr: { name: 'Turkish', native: 'Türkçe' },
     id: { name: 'Indonesian', native: 'Bahasa Indonesia' },
+    uz: { name: 'Uzbek', native: 'Oʻzbekcha' },
 };
 
 export const LanguageSelector: React.FC<LanguageSelectorProps> = ({ isOpen, onClose }) => {
