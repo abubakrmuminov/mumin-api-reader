@@ -150,7 +150,9 @@ export default async function RootLayout({
           <ClientOnly>
             <ThemeApplier />
           </ClientOnly>
-          <Analytics />
+          <ClientOnly>
+            <Analytics />
+          </ClientOnly>
           {children}
           <ClientOnly>
             <GlobalPanels />
