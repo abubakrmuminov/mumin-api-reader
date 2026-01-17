@@ -40,228 +40,211 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: '#0a1a1a',
+                        background: '#1a2f2f',
                         position: 'relative',
                         overflow: 'hidden',
                     }}
                 >
-                    {/* Layered Background Gradients - Pure divs */}
+                    {/* Background Gradient Layers */}
                     <div style={{
                         position: 'absolute',
                         top: 0,
                         left: 0,
                         right: 0,
                         bottom: 0,
-                        background: 'linear-gradient(135deg, #0d2626 0%, #0a1a1a 100%)',
+                        background: 'linear-gradient(135deg, #1a3838 0%, #0f2020 100%)',
                         display: 'flex',
                     }} />
 
-                    {/* Radial Glow Top */}
+                    {/* Top Radial Glow */}
                     <div style={{
                         position: 'absolute',
-                        top: '-200px',
-                        left: '300px',
-                        width: '600px',
-                        height: '400px',
-                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+                        top: '-150px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '700px',
+                        height: '500px',
+                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.25) 0%, transparent 65%)',
                         borderRadius: '50%',
                         display: 'flex',
                     }} />
 
-                    {/* Radial Glow Center */}
+                    {/* Center Glow */}
                     <div style={{
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
                         transform: 'translate(-50%, -50%)',
-                        width: '800px',
-                        height: '800px',
-                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 60%)',
+                        width: '900px',
+                        height: '700px',
+                        background: 'radial-gradient(ellipse, rgba(212, 175, 55, 0.12) 0%, transparent 60%)',
                         borderRadius: '50%',
                         display: 'flex',
                     }} />
 
-                    {/* Diagonal Light Beams - Simple SVG */}
-                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.12 }}>
-                        <line x1="600" y1="0" x2="550" y2="630" stroke="#d4af37" strokeWidth="100" opacity="0.3" />
-                        <line x1="600" y1="0" x2="650" y2="630" stroke="#d4af37" strokeWidth="100" opacity="0.3" />
-                        <line x1="600" y1="0" x2="400" y2="630" stroke="#d4af37" strokeWidth="70" opacity="0.2" />
-                        <line x1="600" y1="0" x2="800" y2="630" stroke="#d4af37" strokeWidth="70" opacity="0.2" />
+                    {/* Diagonal Light Beams */}
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.15 }}>
+                        <line x1="600" y1="0" x2="500" y2="630" stroke="#d4af37" strokeWidth="120" opacity="0.25" />
+                        <line x1="600" y1="0" x2="700" y2="630" stroke="#d4af37" strokeWidth="120" opacity="0.25" />
+                        <line x1="600" y1="0" x2="350" y2="630" stroke="#f4e5c2" strokeWidth="80" opacity="0.15" />
+                        <line x1="600" y1="0" x2="850" y2="630" stroke="#f4e5c2" strokeWidth="80" opacity="0.15" />
                     </svg>
 
-                    {/* Islamic Geometric Pattern - Simplified */}
-                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.05 }}>
+                    {/* Subtle Islamic Pattern */}
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.04 }}>
                         <defs>
-                            <pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
-                                <circle cx="50" cy="50" r="30" fill="none" stroke="#d4af37" strokeWidth="1.5" />
-                                <circle cx="50" cy="50" r="20" fill="none" stroke="#d4af37" strokeWidth="1" />
-                                <line x1="50" y1="20" x2="50" y2="80" stroke="#d4af37" strokeWidth="1" />
-                                <line x1="20" y1="50" x2="80" y2="50" stroke="#d4af37" strokeWidth="1" />
-                                <line x1="30" y1="30" x2="70" y2="70" stroke="#d4af37" strokeWidth="1" />
-                                <line x1="70" y1="30" x2="30" y2="70" stroke="#d4af37" strokeWidth="1" />
+                            <pattern id="pattern" x="0" y="0" width="80" height="80" patternUnits="userSpaceOnUse">
+                                <circle cx="40" cy="40" r="25" fill="none" stroke="#d4af37" strokeWidth="1.2" />
+                                <circle cx="40" cy="40" r="15" fill="none" stroke="#d4af37" strokeWidth="0.8" />
+                                <line x1="40" y1="15" x2="40" y2="65" stroke="#d4af37" strokeWidth="0.8" />
+                                <line x1="15" y1="40" x2="65" y2="40" stroke="#d4af37" strokeWidth="0.8" />
+                                <line x1="23" y1="23" x2="57" y2="57" stroke="#d4af37" strokeWidth="0.8" />
+                                <line x1="57" y1="23" x2="23" y2="57" stroke="#d4af37" strokeWidth="0.8" />
                             </pattern>
                         </defs>
                         <rect width="100%" height="100%" fill="url(#pattern)" />
                     </svg>
 
-                    {/* Floating Light Particles */}
+                    {/* Floating Particles - More visible */}
                     <div style={{
                         position: 'absolute',
-                        top: '18%',
-                        left: '12%',
-                        width: '10px',
-                        height: '10px',
+                        top: '12%',
+                        left: '15%',
+                        width: '8px',
+                        height: '8px',
                         borderRadius: '50%',
                         background: '#d4af37',
+                        opacity: 0.7,
+                        display: 'flex',
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        top: '20%',
+                        right: '20%',
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: '#f4e5c2',
                         opacity: 0.6,
                         display: 'flex',
                     }} />
                     <div style={{
                         position: 'absolute',
-                        top: '28%',
-                        right: '18%',
+                        bottom: '25%',
+                        left: '18%',
                         width: '7px',
                         height: '7px',
                         borderRadius: '50%',
-                        background: '#f4e5c2',
-                        opacity: 0.5,
+                        background: '#d4af37',
+                        opacity: 0.65,
                         display: 'flex',
                     }} />
                     <div style={{
                         position: 'absolute',
-                        bottom: '32%',
-                        left: '22%',
-                        width: '6px',
-                        height: '6px',
-                        borderRadius: '50%',
-                        background: '#c0c0c0',
-                        opacity: 0.4,
-                        display: 'flex',
-                    }} />
-                    <div style={{
-                        position: 'absolute',
-                        bottom: '25%',
-                        right: '15%',
+                        bottom: '18%',
+                        right: '12%',
                         width: '8px',
                         height: '8px',
                         borderRadius: '50%',
-                        background: '#d4af37',
+                        background: '#f4e5c2',
+                        opacity: 0.7,
+                        display: 'flex',
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        top: '35%',
+                        left: '8%',
+                        width: '5px',
+                        height: '5px',
+                        borderRadius: '50%',
+                        background: '#c0c0c0',
                         opacity: 0.55,
                         display: 'flex',
                     }} />
                     <div style={{
                         position: 'absolute',
-                        top: '45%',
-                        left: '8%',
-                        width: '5px',
-                        height: '5px',
-                        borderRadius: '50%',
-                        background: '#f4e5c2',
-                        opacity: 0.45,
-                        display: 'flex',
-                    }} />
-                    <div style={{
-                        position: 'absolute',
-                        top: '60%',
+                        top: '40%',
                         right: '10%',
                         width: '6px',
                         height: '6px',
                         borderRadius: '50%',
                         background: '#d4af37',
-                        opacity: 0.5,
+                        opacity: 0.6,
                         display: 'flex',
                     }} />
 
-                    {/* Ornate Border Frame - Triple Layer */}
+                    {/* Border Frame */}
                     <div style={{
                         position: 'absolute',
-                        top: '30px',
-                        left: '30px',
-                        right: '30px',
-                        bottom: '30px',
-                        border: '3px solid #d4af37',
-                        borderRadius: '8px',
+                        top: '25px',
+                        left: '25px',
+                        right: '25px',
+                        bottom: '25px',
+                        border: '2.5px solid #d4af37',
+                        borderRadius: '6px',
                         display: 'flex',
                     }}>
                         <div style={{
                             position: 'absolute',
-                            top: '8px',
-                            left: '8px',
-                            right: '8px',
-                            bottom: '8px',
-                            border: '1px solid rgba(212, 175, 55, 0.5)',
+                            top: '7px',
+                            left: '7px',
+                            right: '7px',
+                            bottom: '7px',
+                            border: '1px solid rgba(212, 175, 55, 0.4)',
                             borderRadius: '4px',
                             display: 'flex',
-                        }}>
-                            <div style={{
-                                position: 'absolute',
-                                top: '4px',
-                                left: '4px',
-                                right: '4px',
-                                bottom: '4px',
-                                border: '1px solid rgba(255, 255, 255, 0.1)',
-                                borderRadius: '2px',
-                                display: 'flex',
-                            }} />
-                        </div>
+                        }} />
                     </div>
 
-                    {/* Corner Islamic Stars - All 4 Corners */}
-                    {/* Top Left */}
-                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', top: '15px', left: '15px' }}>
-                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
-                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
-                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    {/* Corner Stars */}
+                    <svg width="50" height="50" viewBox="0 0 50 50" style={{ position: 'absolute', top: '18px', left: '18px' }}>
+                        <path d="M 25 5 L 28 16 L 40 16 L 30 23 L 33 34 L 25 27 L 17 34 L 20 23 L 10 16 L 22 16 Z" fill="#d4af37" opacity="0.85" />
+                        <circle cx="25" cy="25" r="7" fill="none" stroke="#d4af37" strokeWidth="1.3" opacity="0.6" />
                     </svg>
 
-                    {/* Top Right */}
-                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', top: '15px', right: '15px' }}>
-                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
-                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
-                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    <svg width="50" height="50" viewBox="0 0 50 50" style={{ position: 'absolute', top: '18px', right: '18px' }}>
+                        <path d="M 25 5 L 28 16 L 40 16 L 30 23 L 33 34 L 25 27 L 17 34 L 20 23 L 10 16 L 22 16 Z" fill="#d4af37" opacity="0.85" />
+                        <circle cx="25" cy="25" r="7" fill="none" stroke="#d4af37" strokeWidth="1.3" opacity="0.6" />
                     </svg>
 
-                    {/* Bottom Left */}
-                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', bottom: '15px', left: '15px' }}>
-                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
-                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
-                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    <svg width="50" height="50" viewBox="0 0 50 50" style={{ position: 'absolute', bottom: '18px', left: '18px' }}>
+                        <path d="M 25 5 L 28 16 L 40 16 L 30 23 L 33 34 L 25 27 L 17 34 L 20 23 L 10 16 L 22 16 Z" fill="#d4af37" opacity="0.85" />
+                        <circle cx="25" cy="25" r="7" fill="none" stroke="#d4af37" strokeWidth="1.3" opacity="0.6" />
                     </svg>
 
-                    {/* Bottom Right */}
-                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', bottom: '15px', right: '15px' }}>
-                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
-                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
-                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    <svg width="50" height="50" viewBox="0 0 50 50" style={{ position: 'absolute', bottom: '18px', right: '18px' }}>
+                        <path d="M 25 5 L 28 16 L 40 16 L 30 23 L 33 34 L 25 27 L 17 34 L 20 23 L 10 16 L 22 16 Z" fill="#d4af37" opacity="0.85" />
+                        <circle cx="25" cy="25" r="7" fill="none" stroke="#d4af37" strokeWidth="1.3" opacity="0.6" />
                     </svg>
 
-                    {/* Glowing Halo around logo area */}
+                    {/* Glow around logo */}
                     <div style={{
                         position: 'absolute',
-                        top: '180px',
-                        left: '555px',
-                        width: '90px',
-                        height: '90px',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -130px)',
+                        width: '120px',
+                        height: '120px',
                         borderRadius: '50%',
-                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%)',
+                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.35) 0%, transparent 65%)',
                         display: 'flex',
                     }} />
 
-                    {/* Main Content Container */}
+                    {/* Main Content */}
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         zIndex: 10,
-                        gap: '20px',
+                        gap: '14px',
                     }}>
-                        {/* Premium Logo Icon */}
-                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none">
+                        {/* Logo Icon */}
+                        <svg width="75" height="75" viewBox="0 0 24 24" fill="none">
                             <defs>
                                 <linearGradient id="starFill" x1="0%" y1="0%" x2="100%" y2="100%">
                                     <stop offset="0%" style={{ stopColor: '#f4e5c2', stopOpacity: 1 }} />
                                     <stop offset="50%" style={{ stopColor: '#d4af37', stopOpacity: 1 }} />
-                                    <stop offset="100%" style={{ stopColor: '#b8860b', stopOpacity: 1 }} />
+                                    <stop offset="100%" style={{ stopColor: '#c9a033', stopOpacity: 1 }} />
                                 </linearGradient>
                             </defs>
                             <path
@@ -272,99 +255,99 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                             />
                         </svg>
 
-                        {/* Main Title - Layered for 3D effect */}
+                        {/* Title with Shadow Layers */}
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             position: 'relative',
+                            marginTop: '8px',
                         }}>
-                            {/* Shadow layer 1 */}
+                            {/* Shadow 1 */}
                             <div style={{
                                 position: 'absolute',
                                 fontFamily: '"Cinzel"',
-                                fontSize: '115px',
+                                fontSize: '90px',
                                 fontWeight: 700,
-                                letterSpacing: '0.15em',
-                                color: 'rgba(212, 175, 55, 0.2)',
-                                top: '4px',
+                                letterSpacing: '0.12em',
+                                color: 'rgba(212, 175, 55, 0.25)',
+                                top: '3px',
                                 display: 'flex',
                             }}>
                                 {title}
                             </div>
                             
-                            {/* Shadow layer 2 */}
+                            {/* Shadow 2 */}
                             <div style={{
                                 position: 'absolute',
                                 fontFamily: '"Cinzel"',
-                                fontSize: '115px',
+                                fontSize: '90px',
                                 fontWeight: 700,
-                                letterSpacing: '0.15em',
-                                color: 'rgba(212, 175, 55, 0.3)',
-                                top: '2px',
+                                letterSpacing: '0.12em',
+                                color: 'rgba(212, 175, 55, 0.4)',
+                                top: '1.5px',
                                 display: 'flex',
                             }}>
                                 {title}
                             </div>
 
-                            {/* Main title with gradient simulation */}
+                            {/* Main Title */}
                             <div style={{
                                 fontFamily: '"Cinzel"',
-                                fontSize: '115px',
+                                fontSize: '90px',
                                 fontWeight: 700,
-                                letterSpacing: '0.15em',
+                                letterSpacing: '0.12em',
                                 color: '#f4e5c2',
                                 display: 'flex',
-                                position: 'relative',
                             }}>
                                 {title}
                             </div>
                         </div>
 
-                        {/* Elegant Separator */}
+                        {/* Separator */}
                         <div style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '20px',
-                            marginTop: '10px',
-                            marginBottom: '10px',
+                            gap: '18px',
+                            marginTop: '6px',
+                            marginBottom: '6px',
                         }}>
                             <div style={{
-                                width: '90px',
+                                width: '70px',
                                 height: '2px',
                                 background: 'linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%)',
                                 display: 'flex',
                             }} />
                             
-                            <svg width="24" height="24" viewBox="0 0 24 24">
-                                <circle cx="12" cy="12" r="9" fill="none" stroke="#d4af37" strokeWidth="1.8" />
-                                <circle cx="12" cy="12" r="4" fill="#d4af37" opacity="0.8" />
-                                <line x1="12" y1="3" x2="12" y2="21" stroke="#d4af37" strokeWidth="1" opacity="0.6" />
-                                <line x1="3" y1="12" x2="21" y2="12" stroke="#d4af37" strokeWidth="1" opacity="0.6" />
+                            <svg width="20" height="20" viewBox="0 0 20 20">
+                                <circle cx="10" cy="10" r="7.5" fill="none" stroke="#d4af37" strokeWidth="1.5" />
+                                <circle cx="10" cy="10" r="3" fill="#d4af37" opacity="0.8" />
+                                <line x1="10" y1="2.5" x2="10" y2="17.5" stroke="#d4af37" strokeWidth="1" opacity="0.5" />
+                                <line x1="2.5" y1="10" x2="17.5" y2="10" stroke="#d4af37" strokeWidth="1" opacity="0.5" />
                             </svg>
                             
                             <div style={{
-                                width: '90px',
+                                width: '70px',
                                 height: '2px',
                                 background: 'linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%)',
                                 display: 'flex',
                             }} />
                         </div>
 
-                        {/* Subtitle - Layered */}
+                        {/* Subtitle */}
                         <div style={{
                             display: 'flex',
                             flexDirection: 'column',
                             alignItems: 'center',
                             position: 'relative',
                         }}>
-                            {/* Glow layer */}
+                            {/* Glow */}
                             <div style={{
                                 position: 'absolute',
                                 fontFamily: '"Cinzel"',
-                                fontSize: '36px',
+                                fontSize: '28px',
                                 fontWeight: 400,
-                                letterSpacing: '0.2em',
+                                letterSpacing: '0.18em',
                                 textTransform: 'uppercase',
                                 color: 'rgba(192, 192, 192, 0.3)',
                                 top: '1px',
@@ -375,11 +358,11 @@ export default async function Image(props: { params: Promise<{ locale: string }>
 
                             <div style={{
                                 fontFamily: '"Cinzel"',
-                                fontSize: '36px',
+                                fontSize: '28px',
                                 fontWeight: 400,
-                                letterSpacing: '0.2em',
+                                letterSpacing: '0.18em',
                                 textTransform: 'uppercase',
-                                color: '#c0c0c0',
+                                color: '#d0d0d0',
                                 display: 'flex',
                             }}>
                                 {subtitle}
@@ -389,53 +372,54 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         {/* Tagline */}
                         <div style={{
                             fontFamily: '"Amiri"',
-                            fontSize: '28px',
+                            fontSize: '22px',
                             fontWeight: 400,
                             color: '#d4af37',
-                            marginTop: '6px',
+                            marginTop: '2px',
                             fontStyle: 'italic',
-                            letterSpacing: '0.05em',
+                            letterSpacing: '0.03em',
                             display: 'flex',
                         }}>
                             {tagline}
                         </div>
                     </div>
 
-                    {/* Footer URL */}
+                    {/* Footer */}
                     <div style={{
                         position: 'absolute',
-                        bottom: '50px',
+                        bottom: '40px',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '10px',
+                        gap: '8px',
                     }}>
                         <div style={{
                             fontFamily: '"Cinzel"',
-                            fontSize: '18px',
-                            letterSpacing: '0.35em',
-                            color: '#c0c0c0',
-                            opacity: 0.7,
+                            fontSize: '15px',
+                            letterSpacing: '0.3em',
+                            color: '#b0b0b0',
+                            opacity: 0.75,
                             display: 'flex',
                         }}>
                             HADITH.MUMIN.INK
                         </div>
                         <div style={{
-                            width: '220px',
+                            width: '180px',
                             height: '1px',
                             background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.5) 50%, transparent 100%)',
                             display: 'flex',
                         }} />
                     </div>
 
-                    {/* Bottom ambient glow */}
+                    {/* Bottom Glow */}
                     <div style={{
                         position: 'absolute',
-                        bottom: '-80px',
-                        left: '400px',
-                        width: '400px',
-                        height: '160px',
-                        background: 'radial-gradient(ellipse, rgba(212, 175, 55, 0.12) 0%, transparent 70%)',
+                        bottom: '-60px',
+                        left: '50%',
+                        transform: 'translateX(-50%)',
+                        width: '500px',
+                        height: '180px',
+                        background: 'radial-gradient(ellipse, rgba(212, 175, 55, 0.15) 0%, transparent 65%)',
                         borderRadius: '50%',
                         display: 'flex',
                     }} />
