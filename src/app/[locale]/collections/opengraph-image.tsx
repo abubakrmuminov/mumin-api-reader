@@ -1,4 +1,5 @@
 import { ImageResponse } from 'next/og';
+import { OG_PALETTE, fetchFont } from '@/lib/og-helper';
 
 export const runtime = 'edge';
 
@@ -9,19 +10,6 @@ export const size = {
 };
 export const contentType = 'image/png';
 
-const nobleCream = '#fffdf9';
-const emeraldRadiant = '#10b981';
-const goldSpiritual = '#fbbf24';
-const deepForest = '#064e3b';
-const lightEmerald = '#d1fae5';
-
-const LogoPath = ({ color = deepForest }: { color?: string }) => (
-    <path
-        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4L16.95 10.5L19.5 12L16.95 13.5L12 20L7.05 13.5L4.5 12L7.05 10.5L12 4Z"
-        fill={color}
-    />
-);
-
 export default async function Image(props: { params: Promise<{ locale: string }> }) {
     const params = await props.params;
     const { locale } = params;
@@ -29,8 +17,12 @@ export default async function Image(props: { params: Promise<{ locale: string }>
     const isRu = locale === 'ru';
     const title = isRu ? 'Сборники Хадисов' : 'Hadith Collections';
     const subtitle = isRu
-        ? 'Все великие сборники в одном месте'
-        : 'All major authentic collections in one place';
+        ? 'Великое Наследие Ислама'
+        : 'The Grand Heritage of Islam';
+
+    // Load fonts
+    const cinzel = await fetchFont('Cinzel', 700);
+    const amiri = await fetchFont('Amiri', 400);
 
     return new ImageResponse(
         (
@@ -42,87 +34,125 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    backgroundColor: nobleCream,
+                    backgroundColor: OG_PALETTE.midnightGreen,
+                    color: OG_PALETTE.cream,
                     position: 'relative',
+                    overflow: 'hidden',
                 }}
             >
-                {/* Layer 1: Split Gradients */}
+                {/* Background: Abstract Library shelves sensation */}
                 <div style={{
-                    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundImage: `radial-gradient(circle at top left, ${lightEmerald}, transparent)`,
-                    display: 'flex'
+                    position: 'absolute', inset: 0,
+                    background: `linear-gradient(90deg, ${OG_PALETTE.midnightGreen} 0%, #05332f 50%, ${OG_PALETTE.midnightGreen} 100%)`,
                 }} />
 
-                <div style={{
-                    position: 'absolute', top: 0, left: 0, right: 0, bottom: 0,
-                    backgroundImage: `radial-gradient(circle at bottom right, ${goldSpiritual}20, transparent)`,
-                    display: 'flex'
-                }} />
+                {/* Vertical Book Spine Effects */}
+                {[...Array(5)].map((_, i) => (
+                    <div key={i} style={{
+                        position: 'absolute',
+                        top: '-20%', bottom: '-20%',
+                        left: `${15 + i * 18}%`,
+                        width: '1px',
+                        background: `linear-gradient(to bottom, transparent, ${OG_PALETTE.forest}20, transparent)`,
+                        opacity: 0.3,
+                        transform: 'rotate(15deg)',
+                    }} />
+                ))}
 
-                <div style={{
-                    position: 'absolute', top: '40px', left: '40px', right: '40px', bottom: '40px',
-                    border: `1px solid ${emeraldRadiant}30`,
-                    borderRadius: '32px',
-                    display: 'flex'
-                }} />
-
+                {/* Central "Card" or Book Cover Look */}
                 <div style={{
                     display: 'flex',
                     flexDirection: 'column',
                     alignItems: 'center',
                     justifyContent: 'center',
-                    zIndex: 10,
-                    textAlign: 'center',
+                    width: '600px',
+                    height: '420px',
+                    border: `2px solid ${OG_PALETTE.gold}`,
+                    borderRadius: '8px', // Slightly rounded like a book cover
+                    backgroundColor: 'rgba(2, 44, 34, 0.8)', // Semi-transparent
+                    position: 'relative',
+                    boxShadow: `0 20px 50px -10px #000`,
                 }}>
+                    {/* Inner Border */}
                     <div style={{
-                        width: '80px', height: '80px', background: emeraldRadiant,
-                        borderRadius: '28px', display: 'flex', alignItems: 'center', justifyContent: 'center',
-                        marginBottom: '40px'
+                        position: 'absolute', inset: '12px',
+                        border: `1px solid ${OG_PALETTE.gold}40`,
+                        display: 'flex',
+                        flexDirection: 'column',
+                        alignItems: 'center',
+                        justifyContent: 'center',
+                        padding: '40px',
                     }}>
-                        <svg width="40" height="40" viewBox="0 0 24 24">
-                            <LogoPath color="white" />
-                        </svg>
+                        {/* Ornament Top */}
+                        <div style={{ marginBottom: '30px' }}>
+                            <svg width="40" height="40" viewBox="0 0 24 24" fill={OG_PALETTE.gold}>
+                                <path d="M12 2L14.4 8.2L21 9.2L16.2 14L17.3 20.6L11.5 17.4L5.7 20.6L6.8 14L2 9.2L8.6 8.2L11 2Z" opacity="0.8" />
+                            </svg>
+                        </div>
+
+                        {/* Title */}
+                        <h1 style={{
+                            margin: 0,
+                            fontFamily: '"Cinzel"',
+                            fontSize: '64px',
+                            textAlign: 'center',
+                            color: OG_PALETTE.cream,
+                            fontWeight: 700,
+                            letterSpacing: '0.05em',
+                            textShadow: '0 2px 10px rgba(0,0,0,0.5)',
+                            lineHeight: 1.1,
+                        }}>
+                            {title.toUpperCase()}
+                        </h1>
+
+                        <div style={{
+                            width: '100px',
+                            height: '2px',
+                            backgroundColor: OG_PALETTE.gold,
+                            margin: '30px 0',
+                            opacity: 0.6,
+                        }} />
+
+                        {/* Subtitle */}
+                        <p style={{
+                            margin: 0,
+                            fontFamily: '"Amiri"',
+                            fontSize: '32px',
+                            textAlign: 'center',
+                            color: OG_PALETTE.goldLight,
+                            opacity: 0.9,
+                        }}>
+                            {subtitle}
+                        </p>
                     </div>
 
-                    <h1 style={{
-                        color: deepForest,
-                        fontSize: '72px',
-                        fontWeight: 900,
-                        margin: 0,
-                        marginBottom: '16px',
-                        letterSpacing: '-0.02em',
-                        display: 'flex',
-                    }}>
-                        {title}
-                    </h1>
-
+                    {/* Decorative Vertical Lines on left (spine feel) */}
                     <div style={{
-                        display: 'flex', alignItems: 'center', width: '300px', justifyContent: 'space-between', marginBottom: '32px'
-                    }}>
-                        <div style={{ height: '2px', flex: 1, backgroundImage: `linear-gradient(to right, transparent, ${goldSpiritual})` }} />
-                        <div style={{ width: '6px', height: '6px', background: goldSpiritual, transform: 'rotate(45deg)', margin: '0 12px' }} />
-                        <div style={{ height: '2px', flex: 1, backgroundImage: `linear-gradient(to left, transparent, ${goldSpiritual})` }} />
-                    </div>
-
-                    <p style={{
-                        color: deepForest,
-                        fontSize: '32px',
-                        fontWeight: 500,
-                        opacity: 0.6,
-                        margin: 0,
-                        display: 'flex',
-                    }}>
-                        {subtitle}
-                    </p>
+                        position: 'absolute', top: 0, bottom: 0, left: '20px',
+                        width: '4px',
+                        borderLeft: `1px solid ${OG_PALETTE.gold}40`,
+                        borderRight: `1px solid ${OG_PALETTE.gold}40`,
+                    }} />
                 </div>
 
+                {/* Footer */}
                 <div style={{
-                    position: 'absolute', bottom: '80px', display: 'flex', alignItems: 'center', zIndex: 10
+                    position: 'absolute', bottom: '40px',
+                    fontFamily: '"Cinzel"',
+                    fontSize: '18px',
+                    letterSpacing: '0.2em',
+                    color: OG_PALETTE.muted,
                 }}>
-                    <span style={{ color: deepForest, fontSize: '18px', fontWeight: 400, opacity: 0.4, display: 'flex' }}>hadith.mumin.ink</span>
+                    MUMIN READER
                 </div>
             </div>
         ),
-        size
+        {
+            ...size,
+            fonts: [
+                cinzel && { name: 'Cinzel', data: cinzel, style: 'normal', weight: 700 },
+                amiri && { name: 'Amiri', data: amiri, style: 'normal', weight: 400 },
+            ].filter(Boolean) as any,
+        }
     );
 }
