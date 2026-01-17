@@ -11,12 +11,23 @@ export const contentType = 'image/png';
 
 export default async function Image(props: { params: Promise<{ locale: string }> }) {
     const { locale } = await props.params;
-    const emerald900 = '#064e3b';
-    const emerald950 = '#022c22';
-    const gold500 = '#d4af37';
 
-    const cream = '#fffdf9';
-    const gold400 = '#fbbf24';
+    // Celestial Miracle Colors
+    const nobleCream = '#fffdf9';
+    const emeraldRadiant = '#10b981';
+    const goldSpiritual = '#fbbf24';
+    const tealEthereal = '#2dd4bf';
+    const indigoSoft = '#818cf8';
+    const deepForest = '#064e3b';
+
+    const collections = [
+        { en: 'Sahih al-Bukhari', ru: 'Сахих аль-Бухари' },
+        { en: 'Sahih Muslim', ru: 'Сахих Муслим' },
+        { en: 'Sunan an-Nasa\'i', ru: 'Сунан ан-Насаи' },
+        { en: 'Sunan Abi Dawud', ru: 'Сунан Абу Дауд' },
+    ];
+
+    const logoSrc = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNMTIgNEwxNi45NSAxMC41TDE5LjUgMTJMMTYuOTUgMTMuNUwxMiAyMEw3LjA1IDEzLjVMMC41IDEyTDcuMDUgMTAuNUwxMiA0WiIgZmlsbD0iIzA2NGUzYiIvPgo8L3N2Zz4=";
 
     return new ImageResponse(
         (
@@ -25,146 +36,118 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                     height: '100%',
                     width: '100%',
                     display: 'flex',
-                    flexDirection: 'column',
-                    alignItems: 'center',
-                    justifyContent: 'center',
-                    backgroundColor: emerald950,
+                    flexDirection: 'row',
+                    backgroundColor: nobleCream,
                     position: 'relative',
                     overflow: 'hidden',
+                    fontFamily: 'sans-serif',
                 }}
             >
-                {/* Background with rich radial gradient */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        background: `radial-gradient(circle at center, ${emerald900} 0%, ${emerald950} 100%)`,
-                        display: 'flex',
-                    }}
-                />
+                {/* 1. LAYERED LIGHT MESH */}
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', background: nobleCream }} />
 
-                {/* Decorative Islamic Geometric Patterns (Corners) */}
-                {[0, 1, 2, 3].map((i) => (
-                    <div
-                        key={i}
-                        style={{
-                            position: 'absolute',
-                            width: '400px',
-                            height: '400px',
-                            opacity: 0.1,
-                            border: `2px solid ${gold500}`,
-                            transform: `rotate(${i * 22.5}deg) scale(1.2)`,
-                            // Исправлено: убрали 'auto', используем конкретные значения или не указываем
-                            ...(i < 2 ? { top: '-200px' } : { bottom: '-200px' }),
-                            ...(i % 2 === 0 ? { left: '-200px' } : { right: '-200px' }),
+                <div style={{
+                    position: 'absolute', top: '-10%', left: '10%', width: '100%', height: '100%',
+                    background: `radial-gradient(circle, ${emeraldRadiant} 0%, transparent 70%)`, opacity: 0.15, display: 'flex'
+                }} />
+
+                <div style={{
+                    position: 'absolute', bottom: '-15%', right: '10%', width: '70%', height: '70%',
+                    background: `radial-gradient(circle, ${goldSpiritual} 0%, transparent 70%)`, opacity: 0.15, display: 'flex'
+                }} />
+
+                <div style={{
+                    position: 'absolute', top: '20%', right: '-10%', width: '50%', height: '50%',
+                    background: `radial-gradient(circle, ${tealEthereal} 0%, transparent 70%)`, opacity: 0.1, display: 'flex'
+                }} />
+
+                {/* Left Section: Branding Sidebar (Frosted) */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    width: '440px',
+                    padding: '80px 60px',
+                    justifyContent: 'space-between',
+                    background: 'rgba(255, 255, 255, 0.4)',
+                    borderRight: '1px solid rgba(6, 78, 59, 0.05)',
+                    backdropFilter: 'blur(30px)',
+                    zIndex: 20,
+                }}>
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{
                             display: 'flex',
-                        }}
-                    />
-                ))}
-
-                {/* Outer decorative borders */}
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '40px',
-                        left: '40px',
-                        right: '40px',
-                        bottom: '40px',
-                        border: `1px solid ${gold500}`,
-                        opacity: 0.4,
-                        display: 'flex',
-                    }}
-                />
-                <div
-                    style={{
-                        position: 'absolute',
-                        top: '55px',
-                        left: '55px',
-                        right: '55px',
-                        bottom: '55px',
-                        border: `3px solid ${gold500}`,
-                        opacity: 0.2,
-                        display: 'flex',
-                    }}
-                />
-
-                {/* Main Content Container */}
-                <div
-                    style={{
-                        display: 'flex',
-                        flexDirection: 'column',
-                        alignItems: 'center',
-                        justifyContent: 'center',
-                        zIndex: '10',
-                        textAlign: 'center',
-                        padding: '0 100px',
-                    }}
-                >
-                    <div
-                        style={{
-                            display: 'flex',
-                            alignItems: 'center',
-                            color: gold500,
-                            fontSize: '24px',
-                            fontWeight: 600,
-                            letterSpacing: '0.3em',
-                            textTransform: 'uppercase',
-                            marginBottom: '30px',
-                        }}
-                    >
-                        ✦ Sacred Library
+                            padding: '16px',
+                            background: 'white',
+                            borderRadius: '20px',
+                            border: '1px solid rgba(6, 78, 59, 0.1)',
+                            alignSelf: 'flex-start',
+                            marginBottom: '40px',
+                            boxShadow: '0 10px 25px rgba(6, 78, 59, 0.05)',
+                        }}>
+                            <img src={logoSrc} width="60" height="60" alt="Logo" />
+                        </div>
+                        <div style={{ color: emeraldRadiant, fontSize: '18px', fontWeight: 800, letterSpacing: '0.2em', marginBottom: '12px' }}>
+                            {locale === 'ru' ? 'СВЯЩЕННАЯ БИБЛИОТЕКА' : 'SACRED LIBRARY'}
+                        </div>
+                        <div style={{ color: deepForest, fontSize: '56px', fontWeight: 900, lineHeight: 1.05, letterSpacing: '-0.04em' }}>
+                            {locale === 'ru' ? 'Достоверные Коллекции' : 'The Authentic Collections'}
+                        </div>
                     </div>
 
-                    <div
-                        style={{
-                            fontSize: '80px',
-                            fontWeight: 900,
-                            color: 'white',
-                            lineHeight: 1.1,
-                            marginBottom: '50px',
-                            textShadow: '0 4px 20px rgba(0,0,0,0.5)',
-                        }}
-                    >
-                        Explore Authentic Hadith Collections
-                    </div>
-
-                    <div style={{ display: 'flex', gap: '15px', justifyContent: 'center', flexWrap: 'wrap' }}>
-                        {['Sahih Bukhari', 'Sahih Muslim', 'Sunan an-Nasa\'i', 'Abu Dawood'].map((name) => (
-                            <div key={name} style={{
-                                padding: '12px 28px',
-                                border: `1px solid ${gold500}`,
-                                backgroundColor: 'rgba(212,175,55,0.1)',
-                                borderRadius: '4px',
-                                color: gold400,
-                                fontSize: '22px',
-                                fontWeight: 600
-                            }}>
-                                {name}
-                            </div>
-                        ))}
+                    <div style={{ display: 'flex', flexDirection: 'column' }}>
+                        <div style={{ height: '3px', width: '60px', background: goldSpiritual, marginBottom: '20px' }} />
+                        <span style={{ color: 'rgba(6, 78, 59, 0.4)', fontSize: '18px', letterSpacing: '0.05em', fontWeight: 700 }}>
+                            HADITH.MUMIN.INK
+                        </span>
                     </div>
                 </div>
 
-                <div
-                    style={{
-                        position: 'absolute',
-                        bottom: '80px',
-                        color: gold400,
-                        fontSize: '24px',
-                        opacity: 0.5,
-                        letterSpacing: '0.1em',
-                        fontWeight: 600,
-                    }}
-                >
-                    hadith.mumin.ink
+                {/* Right Section: Floating Grid */}
+                <div style={{
+                    display: 'flex',
+                    flexDirection: 'column',
+                    flex: 1,
+                    padding: '80px',
+                    justifyContent: 'center',
+                    zIndex: 20,
+                }}>
+                    <div style={{ display: 'flex', flexWrap: 'wrap', gap: '24px' }}>
+                        {collections.map((c, idx) => (
+                            <div
+                                key={idx}
+                                style={{
+                                    display: 'flex',
+                                    padding: '30px 45px',
+                                    background: idx === 0 ? 'white' : 'rgba(255, 255, 255, 0.6)',
+                                    borderRadius: '30px',
+                                    border: `2px solid ${idx === 0 ? emeraldRadiant : 'rgba(255, 255, 255, 0.8)'}`,
+                                    color: idx === 0 ? deepForest : 'rgba(6, 78, 59, 0.8)',
+                                    fontSize: '34px',
+                                    fontWeight: 700,
+                                    letterSpacing: '-0.02em',
+                                    boxShadow: idx === 0 ? '0 15px 35px rgba(16, 185, 129, 0.1)' : '0 10px 25px rgba(0,0,0,0.02)',
+                                    backdropFilter: 'blur(10px)',
+                                }}
+                            >
+                                {locale === 'ru' ? c.ru : c.en}
+                            </div>
+                        ))}
+                        <div style={{
+                            display: 'flex',
+                            padding: '30px 45px',
+                            background: 'transparent',
+                            borderRadius: '30px',
+                            border: '2px dashed rgba(6, 78, 59, 0.15)',
+                            color: 'rgba(6, 78, 59, 0.3)',
+                            fontSize: '34px',
+                            fontWeight: 500,
+                        }}>
+                            {locale === 'ru' ? '+ Еще больше' : '+ Many more'}
+                        </div>
+                    </div>
                 </div>
             </div>
         ),
-        {
-            ...size,
-        }
+        { ...size }
     );
 }
