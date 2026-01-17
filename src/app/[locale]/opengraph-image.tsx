@@ -40,7 +40,6 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        justifyContent: 'center',
                         backgroundColor: OG_PALETTE.midnightGreen, // Fallback / Simplified
                         // background: `radial-gradient(ellipse 80% 80% at 50% -20%, #1a3a3a 0%, ${OG_PALETTE.midnightGreen} 45%, #0a1a1a 100%)`, // TOO COMPLEX
                         color: OG_PALETTE.cream,
@@ -148,8 +147,6 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         left: '30px',
                         right: '30px',
                         bottom: '30px',
-                        border: `3px solid ${OG_PALETTE.gold}`,
-                        borderRadius: '8px',
                         border: `3px solid ${OG_PALETTE.gold}`,
                         borderRadius: '8px',
                         // boxShadow: `inset 0 0 60px ${OG_PALETTE.gold}20, 0 0 40px ${OG_PALETTE.gold}30`, // Inset not fully supported
