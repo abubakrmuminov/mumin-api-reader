@@ -40,7 +40,9 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: `radial-gradient(ellipse 80% 80% at 50% -20%, #1a3a3a 0%, ${OG_PALETTE.midnightGreen} 45%, #0a1a1a 100%)`,
+                        justifyContent: 'center',
+                        backgroundColor: OG_PALETTE.midnightGreen, // Fallback / Simplified
+                        // background: `radial-gradient(ellipse 80% 80% at 50% -20%, #1a3a3a 0%, ${OG_PALETTE.midnightGreen} 45%, #0a1a1a 100%)`, // TOO COMPLEX
                         color: OG_PALETTE.cream,
                         position: 'relative',
                         overflow: 'hidden',
@@ -148,7 +150,9 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         bottom: '30px',
                         border: `3px solid ${OG_PALETTE.gold}`,
                         borderRadius: '8px',
-                        boxShadow: `inset 0 0 60px ${OG_PALETTE.gold}20, 0 0 40px ${OG_PALETTE.gold}30`,
+                        border: `3px solid ${OG_PALETTE.gold}`,
+                        borderRadius: '8px',
+                        // boxShadow: `inset 0 0 60px ${OG_PALETTE.gold}20, 0 0 40px ${OG_PALETTE.gold}30`, // Inset not fully supported
                         display: 'flex',
                     }}>
                         <div style={{
