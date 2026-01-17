@@ -8,9 +8,13 @@ const emeraldRadiant = '#10b981';
 const goldSpiritual = '#fbbf24';
 const deepForest = '#064e3b';
 
-// Simplified Islamic Stars Pattern (Base64 SVG)
-const patternSrc = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iIzA2NGUzYiIgZmlsbC1vcGFjaXR5PSIwLjAzIj48cGF0aCBkPSJNMjAgMGw1IDExIDExIDUtMTEgNS01IDExLTUtMTEtMTEtNSAExMS01IDUtMTF6Ii8+PC9nPjwvc3ZnPg==";
-const logoSrc = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNMTIgNEwxNi45NSAxMC41TDE5LjUgMTJMMTYuOTUgMTMuNUwxMiAyMEw3LjA1IDEzLjVMMC41IDEyTDcuMDUgMTAuNUwxMiA0WiIgZmlsbD0iIzA2NGUzYiIvPgo8L3N2Zz4=";
+// Simplified Logo SVG as an inline path to avoid image loading issues
+const LogoPath = () => (
+    <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4L16.95 10.5L19.5 12L16.95 13.5L12 20L7.05 13.5L4.5 12L7.05 10.5L12 4Z"
+        fill={deepForest}
+    />
+);
 
 async function getHadith(id: string) {
     const API_URL = process.env.NEXT_PUBLIC_API_URL || 'https://api.hadith.mumin.ink/v1';
@@ -46,7 +50,6 @@ export async function GET(request: Request) {
         const collection = hadith.collection || 'Sahih Collection';
         const num = hadith.hadithNumber;
 
-        // Truncate logic: few words from the beginning
         const words = rawText.split(' ');
         const truncatedText = words.length > 25
             ? words.slice(0, 25).join(' ') + '...'
@@ -65,51 +68,47 @@ export async function GET(request: Request) {
                         backgroundColor: nobleCream,
                         padding: '80px',
                         position: 'relative',
-                        fontFamily: 'sans-serif',
                     }}
                 >
-                    {/* Background Patterns */}
-                    <div style={{
-                        position: 'absolute',
-                        top: 0,
-                        left: 0,
-                        right: 0,
-                        bottom: 0,
-                        backgroundImage: `url(${patternSrc})`,
-                        backgroundRepeat: 'repeat',
-                        zIndex: 0,
-                    }} />
+                    {/* Simplified Background Pattern using SVG directly */}
+                    <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', opacity: 0.03 }}>
+                        <svg width="100%" height="100%">
+                            <defs>
+                                <pattern id="stars" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                                    <path d="M50 15l5 15 15 5-15 5-5 15-5-15-15-5 15-5z" fill={deepForest} />
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#stars)" />
+                        </svg>
+                    </div>
 
                     {/* Luminous Glows */}
                     <div style={{
                         position: 'absolute',
                         top: '50%',
                         left: '50%',
-                        width: '600px',
-                        height: '600px',
-                        background: `radial-gradient(circle, ${emeraldRadiant}15 0%, transparent 70%)`,
+                        width: '800px',
+                        height: '800px',
+                        background: `radial-gradient(circle, ${emeraldRadiant}20 0%, transparent 70%)`,
                         transform: 'translate(-50%, -50%)',
                         display: 'flex',
-                        zIndex: 1,
                     }} />
 
-                    {/* Central Card */}
+                    {/* Central Card - Removed backdropFilter for stability */}
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        background: 'rgba(255, 255, 255, 0.85)',
-                        backdropFilter: 'blur(10px)',
+                        background: 'white',
                         borderRadius: '48px',
-                        border: `2px solid rgba(6, 78, 59, 0.08)`,
+                        border: `2px solid rgba(6, 78, 59, 0.1)`,
                         padding: '70px',
                         width: '1000px',
                         boxShadow: '0 30px 60px rgba(6, 78, 59, 0.08)',
                         zIndex: 10,
                         textAlign: 'center',
                     }}>
-                        {/* Header: Collection & Number */}
                         <div style={{ display: 'flex', alignItems: 'center', marginBottom: '45px' }}>
                             <div style={{
                                 border: `2px solid ${emeraldRadiant}`,
@@ -120,6 +119,7 @@ export async function GET(request: Request) {
                                 fontWeight: 800,
                                 marginRight: '18px',
                                 letterSpacing: '0.05em',
+                                display: 'flex',
                             }}>
                                 {collection.toUpperCase()}
                             </div>
@@ -128,15 +128,15 @@ export async function GET(request: Request) {
                                 fontSize: '24px',
                                 fontWeight: 600,
                                 opacity: 0.5,
+                                display: 'flex',
                             }}>
                                 {locale === 'ru' ? `Хадис №${num}` : `Hadith #${num}`}
                             </div>
                         </div>
 
-                        {/* Main Quote */}
                         <div style={{
                             color: deepForest,
-                            fontSize: truncatedText.length > 150 ? '38px' : '48px',
+                            fontSize: truncatedText.length > 150 ? '34px' : '44px',
                             lineHeight: 1.4,
                             fontWeight: 700,
                             marginBottom: '45px',
@@ -147,12 +147,12 @@ export async function GET(request: Request) {
                             "{truncatedText}"
                         </div>
 
-                        {/* Decorative Divider */}
                         <div style={{
                             width: '140px',
                             height: '5px',
                             background: `linear-gradient(to right, ${emeraldRadiant}, ${goldSpiritual}, ${emeraldRadiant})`,
                             borderRadius: '10px',
+                            display: 'flex',
                         }} />
                     </div>
 
@@ -163,14 +163,15 @@ export async function GET(request: Request) {
                         display: 'flex',
                         alignItems: 'center',
                         zIndex: 10,
-                        background: 'rgba(255, 255, 255, 0.5)',
+                        background: 'rgba(255, 255, 255, 0.8)',
                         padding: '12px 24px',
                         borderRadius: '20px',
-                        backdropFilter: 'blur(5px)',
                     }}>
-                        <img src={logoSrc} width="28" height="28" alt="Logo" style={{ marginRight: '15px' }} />
-                        <span style={{ color: deepForest, fontSize: '22px', fontWeight: 900, letterSpacing: '0.02em' }}>MUMIN</span>
-                        <span style={{ color: deepForest, fontSize: '22px', fontWeight: 300, opacity: 0.5, marginLeft: '12px' }}>hadith.mumin.ink</span>
+                        <svg width="28" height="28" viewBox="0 0 24 24" style={{ marginRight: '15px' }}>
+                            <LogoPath />
+                        </svg>
+                        <span style={{ color: deepForest, fontSize: '22px', fontWeight: 900, letterSpacing: '0.02em', display: 'flex' }}>MUMIN</span>
+                        <span style={{ color: deepForest, fontSize: '22px', fontWeight: 300, opacity: 0.5, marginLeft: '12px', display: 'flex' }}>hadith.mumin.ink</span>
                     </div>
                 </div>
             ),

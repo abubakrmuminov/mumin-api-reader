@@ -14,8 +14,13 @@ const emeraldRadiant = '#10b981';
 const goldSpiritual = '#fbbf24';
 const deepForest = '#064e3b';
 
-const patternSrc = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAiIGhlaWdodD0iNDAiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PGcgZmlsbD0iIzA2NGUzYiIgZmlsbC1vcGFjaXR5PSIwLjAzIj48cGF0aCBkPSJNMjAgMGw1IDExIDExIDUtMTEgNS01IDExLTUtMTEtMTEtNSAExMS01IDUtMTF6Ii8+PC9nPjwvc3ZnPg==";
-const logoSrc = "data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iMjQiIGhlaWdodD0iMjQiIHZpZXdCb3g9IjAgMCAyNCAyNCIgZmlsbD0ibm9uZSIgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIj4KPHBhdGggZD0iTTEyIDJDNi40OCAyIDIgNi40OCAyIDEyQzIgMTcuNTIgNi40OCAyMiAxMiAyMkMxNy41MiAyMiAyMiAxNy41MiAyMiAxMkMyMiA2LjQ4IDE3LjUyIDIgMTIgMlpNMTIgNEwxNi45NSAxMC41TDE5LjUgMTJMMTYuOTUgMTMuNUwxMiAyMEw3LjA1IDEzLjVMMC41IDEyTDcuMDUgMTAuNUwxMiA0WiIgZmlsbD0iIzA2NGUzYiIvPgo8L3N2Zz4=";
+// Direct SVG path for logo
+const LogoPath = () => (
+    <path
+        d="M12 2C6.48 2 2 6.48 2 12C2 17.52 6.48 22 12 22C17.52 22 22 17.52 22 12C22 6.48 17.52 2 12 2ZM12 4L16.95 10.5L19.5 12L16.95 13.5L12 20L7.05 13.5L4.5 12L7.05 10.5L12 4Z"
+        fill={deepForest}
+    />
+);
 
 export default async function Image(props: { params: Promise<{ locale: string }> }) {
     const params = await props.params;
@@ -40,20 +45,19 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                     backgroundColor: nobleCream,
                     padding: '80px',
                     position: 'relative',
-                    fontFamily: 'sans-serif',
                 }}
             >
                 {/* Patterns */}
-                <div style={{
-                    position: 'absolute',
-                    top: 0,
-                    left: 0,
-                    right: 0,
-                    bottom: 0,
-                    backgroundImage: `url(${patternSrc})`,
-                    backgroundRepeat: 'repeat',
-                    zIndex: 0,
-                }} />
+                <div style={{ position: 'absolute', top: 0, left: 0, right: 0, bottom: 0, display: 'flex', opacity: 0.03 }}>
+                    <svg width="100%" height="100%">
+                        <defs>
+                            <pattern id="stars-main" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                                <path d="M50 15l5 15 15 5-15 5-5 15-5-15-15-5 15-5z" fill={deepForest} />
+                            </pattern>
+                        </defs>
+                        <rect width="100%" height="100%" fill="url(#stars-main)" />
+                    </svg>
+                </div>
 
                 {/* Glow */}
                 <div style={{
@@ -65,7 +69,6 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                     background: `radial-gradient(circle, ${emeraldRadiant}20 0%, transparent 70%)`,
                     transform: 'translate(-50%, -50%)',
                     display: 'flex',
-                    zIndex: 1,
                 }} />
 
                 {/* Content */}
@@ -84,7 +87,9 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         marginBottom: '40px',
                         boxShadow: '0 20px 40px rgba(6, 78, 59, 0.1)',
                     }}>
-                        <img src={logoSrc} width="80" height="80" alt="Logo" />
+                        <svg width="80" height="80" viewBox="0 0 24 24">
+                            <LogoPath />
+                        </svg>
                     </div>
 
                     <h1 style={{
@@ -94,6 +99,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         margin: 0,
                         marginBottom: '20px',
                         letterSpacing: '-0.04em',
+                        display: 'flex',
                     }}>
                         {title}
                     </h1>
@@ -107,6 +113,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         textAlign: 'center',
                         maxWidth: '800px',
                         lineHeight: 1.4,
+                        display: 'flex',
                     }}>
                         {subtitle}
                     </p>

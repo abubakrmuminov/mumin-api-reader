@@ -133,7 +133,9 @@ export default async function RootLayout({
   return (
     <html lang={locale} className="scroll-smooth" suppressHydrationWarning>
       <head>
-        <StructuredData data={generateSearchSchema(BASE_URL)} />
+        <ClientOnly>
+          <StructuredData data={generateSearchSchema(BASE_URL)} />
+        </ClientOnly>
       </head>
       <body
         suppressHydrationWarning
