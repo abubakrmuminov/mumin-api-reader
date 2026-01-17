@@ -40,8 +40,7 @@ export default async function Image() {
                         width: '600px',
                         height: '600px',
                         borderRadius: '50%',
-                        background: 'radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%)',
-                        filter: 'blur(40px)',
+                        backgroundColor: 'rgba(212,175,55,0.05)',
                     }}
                 />
 
@@ -50,11 +49,11 @@ export default async function Image() {
                         display: 'flex',
                         alignItems: 'center',
                         color: gold500,
-                        fontSize: 24,
+                        fontSize: '24px',
                         fontWeight: 600,
                         letterSpacing: '0.2em',
                         textTransform: 'uppercase',
-                        marginBottom: 20,
+                        marginBottom: '20px',
                     }}
                 >
                     ✦ Library
@@ -62,11 +61,11 @@ export default async function Image() {
 
                 <div
                     style={{
-                        fontSize: 80,
+                        fontSize: '80px',
                         fontWeight: 900,
                         color: 'white',
                         lineHeight: 1.1,
-                        marginBottom: 40,
+                        marginBottom: '40px',
                         maxWidth: '800px',
                         textShadow: '0 4px 10px rgba(0,0,0,0.3)',
                     }}
@@ -76,13 +75,13 @@ export default async function Image() {
 
                 <div style={{ display: 'flex', gap: '20px' }}>
                     {/* Pills representing collections */}
-                    <div style={{ padding: '10px 24px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', color: 'white', fontSize: 24 }}>
+                    <div style={{ padding: '10px 24px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', color: 'white', fontSize: '24px' }}>
                         Sahih al-Bukhari
                     </div>
-                    <div style={{ padding: '10px 24px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', color: 'white', fontSize: 24 }}>
+                    <div style={{ padding: '10px 24px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', color: 'white', fontSize: '24px' }}>
                         Sahih Muslim
                     </div>
-                    <div style={{ padding: '10px 24px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', color: 'white', fontSize: 24 }}>
+                    <div style={{ padding: '10px 24px', backgroundColor: 'rgba(255,255,255,0.1)', borderRadius: '99px', color: 'white', fontSize: '24px' }}>
                         + More
                     </div>
                 </div>
@@ -93,7 +92,7 @@ export default async function Image() {
                         bottom: '60px',
                         left: '80px',
                         color: 'rgba(255,255,255,0.4)',
-                        fontSize: 24,
+                        fontSize: '24px',
                     }}
                 >
                     mumin.ink

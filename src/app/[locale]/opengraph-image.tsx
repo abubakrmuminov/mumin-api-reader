@@ -89,7 +89,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
                         display: 'flex',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        zIndex: 1,
+                        zIndex: '1',
                     }}
                 >
                     <div
@@ -108,7 +108,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        zIndex: 10,
+                        zIndex: '10',
                         transform: 'translateY(-10px)',
                     }}
                 >
@@ -118,7 +118,6 @@ export default async function Image({ params }: { params: { locale: string } }) 
                         height="120"
                         style={{
                             marginBottom: '30px',
-                            filter: 'drop-shadow(0 10px 20px rgba(0,0,0,0.3))'
                         }}
                         alt="Logo"
                     />
@@ -126,11 +125,11 @@ export default async function Image({ params }: { params: { locale: string } }) 
                     <div
                         style={{
                             color: cream,
-                            fontSize: 72,
+                            fontSize: '72px',
                             fontWeight: 900,
                             letterSpacing: '-0.03em',
                             lineHeight: 1.1,
-                            marginBottom: 20,
+                            marginBottom: '20px',
                             textShadow: '0 4px 20px rgba(0,0,0,0.5)',
                             display: 'flex',
                             flexDirection: 'column',
@@ -151,7 +150,7 @@ export default async function Image({ params }: { params: { locale: string } }) 
                         <div
                             style={{
                                 color: gold400,
-                                fontSize: 24,
+                                fontSize: '24px',
                                 fontWeight: 600,
                                 letterSpacing: '0.2em',
                                 textTransform: 'uppercase',
