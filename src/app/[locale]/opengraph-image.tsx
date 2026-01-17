@@ -23,7 +23,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
         ? 'Свет Достоверной Мудрости'
         : 'The Light of Authentic Wisdom';
 
-    console.log('Generating Premium OG Image for locale:', locale);
+    console.log('Generating Premium Satori-Compatible OG Image for locale:', locale);
 
     try {
         const cynzelRegular = await fetchFont('Cinzel', 400);
@@ -40,103 +40,135 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         flexDirection: 'column',
                         alignItems: 'center',
                         justifyContent: 'center',
-                        backgroundColor: OG_PALETTE.midnightGreen, // Fallback / Simplified
-                        // background: `radial-gradient(ellipse 80% 80% at 50% -20%, #1a3a3a 0%, ${OG_PALETTE.midnightGreen} 45%, #0a1a1a 100%)`, // TOO COMPLEX
-                        color: OG_PALETTE.cream,
+                        background: '#0a1a1a',
                         position: 'relative',
                         overflow: 'hidden',
                     }}
                 >
-                    {/* Divine Light Rays from Top */}
+                    {/* Layered Background Gradients - Pure divs */}
                     <div style={{
                         position: 'absolute',
-                        top: '-300px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: '1400px',
-                        height: '800px',
-                        background: `radial-gradient(ellipse at center, ${OG_PALETTE.gold}25 0%, transparent 70%)`,
-                        opacity: 0.6,
+                        top: 0,
+                        left: 0,
+                        right: 0,
+                        bottom: 0,
+                        background: 'linear-gradient(135deg, #0d2626 0%, #0a1a1a 100%)',
                         display: 'flex',
                     }} />
 
-                    {/* Animated Light Beams */}
-                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.08 }}>
-                        <defs>
-                            <linearGradient id="beam1" x1="0%" y1="0%" x2="0%" y2="100%">
-                                <stop offset="0%" stopColor={OG_PALETTE.gold} stopOpacity="0.3" />
-                                <stop offset="100%" stopColor={OG_PALETTE.gold} stopOpacity="0" />
-                            </linearGradient>
-                        </defs>
-                        <path d="M 600 0 L 550 630" stroke="url(#beam1)" strokeWidth="80" />
-                        <path d="M 600 0 L 650 630" stroke="url(#beam1)" strokeWidth="80" />
-                        <path d="M 600 0 L 400 630" stroke="url(#beam1)" strokeWidth="60" />
-                        <path d="M 600 0 L 800 630" stroke="url(#beam1)" strokeWidth="60" />
+                    {/* Radial Glow Top */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '-200px',
+                        left: '300px',
+                        width: '600px',
+                        height: '400px',
+                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.15) 0%, transparent 70%)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                    }} />
+
+                    {/* Radial Glow Center */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '50%',
+                        left: '50%',
+                        transform: 'translate(-50%, -50%)',
+                        width: '800px',
+                        height: '800px',
+                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.08) 0%, transparent 60%)',
+                        borderRadius: '50%',
+                        display: 'flex',
+                    }} />
+
+                    {/* Diagonal Light Beams - Simple SVG */}
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.12 }}>
+                        <line x1="600" y1="0" x2="550" y2="630" stroke="#d4af37" strokeWidth="100" opacity="0.3" />
+                        <line x1="600" y1="0" x2="650" y2="630" stroke="#d4af37" strokeWidth="100" opacity="0.3" />
+                        <line x1="600" y1="0" x2="400" y2="630" stroke="#d4af37" strokeWidth="70" opacity="0.2" />
+                        <line x1="600" y1="0" x2="800" y2="630" stroke="#d4af37" strokeWidth="70" opacity="0.2" />
                     </svg>
 
-                    {/* Sacred Islamic Geometric Pattern */}
-                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.06 }}>
+                    {/* Islamic Geometric Pattern - Simplified */}
+                    <svg style={{ position: 'absolute', top: 0, left: 0, width: '100%', height: '100%', opacity: 0.05 }}>
                         <defs>
-                            <pattern id="islamicPattern" x="0" y="0" width="120" height="120" patternUnits="userSpaceOnUse">
-                                <g stroke={OG_PALETTE.gold} fill="none" strokeWidth="1.5">
-                                    <circle cx="60" cy="60" r="30" />
-                                    <circle cx="60" cy="60" r="20" />
-                                    <path d="M 60 30 L 60 90 M 30 60 L 90 60" />
-                                    <path d="M 42 42 L 78 78 M 78 42 L 42 78" />
-                                    <polygon points="60,35 70,55 85,55 73,65 78,80 60,70 42,80 47,65 35,55 50,55" />
-                                </g>
+                            <pattern id="pattern" x="0" y="0" width="100" height="100" patternUnits="userSpaceOnUse">
+                                <circle cx="50" cy="50" r="30" fill="none" stroke="#d4af37" strokeWidth="1.5" />
+                                <circle cx="50" cy="50" r="20" fill="none" stroke="#d4af37" strokeWidth="1" />
+                                <line x1="50" y1="20" x2="50" y2="80" stroke="#d4af37" strokeWidth="1" />
+                                <line x1="20" y1="50" x2="80" y2="50" stroke="#d4af37" strokeWidth="1" />
+                                <line x1="30" y1="30" x2="70" y2="70" stroke="#d4af37" strokeWidth="1" />
+                                <line x1="70" y1="30" x2="30" y2="70" stroke="#d4af37" strokeWidth="1" />
                             </pattern>
                         </defs>
-                        <rect width="100%" height="100%" fill="url(#islamicPattern)" />
+                        <rect width="100%" height="100%" fill="url(#pattern)" />
                     </svg>
 
-                    {/* Glowing Particles */}
+                    {/* Floating Light Particles */}
                     <div style={{
                         position: 'absolute',
-                        top: '15%',
-                        left: '10%',
-                        width: '8px',
-                        height: '8px',
+                        top: '18%',
+                        left: '12%',
+                        width: '10px',
+                        height: '10px',
                         borderRadius: '50%',
-                        background: OG_PALETTE.gold,
-                        boxShadow: `0 0 20px ${OG_PALETTE.gold}`,
-                        opacity: 0.7,
-                        display: 'flex',
-                    }} />
-                    <div style={{
-                        position: 'absolute',
-                        top: '25%',
-                        right: '15%',
-                        width: '6px',
-                        height: '6px',
-                        borderRadius: '50%',
-                        background: OG_PALETTE.goldLight,
-                        boxShadow: `0 0 15px ${OG_PALETTE.goldLight}`,
+                        background: '#d4af37',
                         opacity: 0.6,
                         display: 'flex',
                     }} />
                     <div style={{
                         position: 'absolute',
-                        bottom: '30%',
-                        left: '20%',
-                        width: '5px',
-                        height: '5px',
+                        top: '28%',
+                        right: '18%',
+                        width: '7px',
+                        height: '7px',
                         borderRadius: '50%',
-                        background: OG_PALETTE.silver,
-                        boxShadow: `0 0 12px ${OG_PALETTE.silver}`,
+                        background: '#f4e5c2',
                         opacity: 0.5,
                         display: 'flex',
                     }} />
                     <div style={{
                         position: 'absolute',
-                        bottom: '20%',
-                        right: '12%',
-                        width: '7px',
-                        height: '7px',
+                        bottom: '32%',
+                        left: '22%',
+                        width: '6px',
+                        height: '6px',
                         borderRadius: '50%',
-                        background: OG_PALETTE.gold,
-                        boxShadow: `0 0 18px ${OG_PALETTE.gold}`,
-                        opacity: 0.6,
+                        background: '#c0c0c0',
+                        opacity: 0.4,
+                        display: 'flex',
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        bottom: '25%',
+                        right: '15%',
+                        width: '8px',
+                        height: '8px',
+                        borderRadius: '50%',
+                        background: '#d4af37',
+                        opacity: 0.55,
+                        display: 'flex',
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        top: '45%',
+                        left: '8%',
+                        width: '5px',
+                        height: '5px',
+                        borderRadius: '50%',
+                        background: '#f4e5c2',
+                        opacity: 0.45,
+                        display: 'flex',
+                    }} />
+                    <div style={{
+                        position: 'absolute',
+                        top: '60%',
+                        right: '10%',
+                        width: '6px',
+                        height: '6px',
+                        borderRadius: '50%',
+                        background: '#d4af37',
+                        opacity: 0.5,
                         display: 'flex',
                     }} />
 
@@ -147,9 +179,8 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         left: '30px',
                         right: '30px',
                         bottom: '30px',
-                        border: `3px solid ${OG_PALETTE.gold}`,
+                        border: '3px solid #d4af37',
                         borderRadius: '8px',
-                        // boxShadow: `inset 0 0 60px ${OG_PALETTE.gold}20, 0 0 40px ${OG_PALETTE.gold}30`, // Inset not fully supported
                         display: 'flex',
                     }}>
                         <div style={{
@@ -158,7 +189,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                             left: '8px',
                             right: '8px',
                             bottom: '8px',
-                            border: `1px solid ${OG_PALETTE.gold}60`,
+                            border: '1px solid rgba(212, 175, 55, 0.5)',
                             borderRadius: '4px',
                             display: 'flex',
                         }}>
@@ -168,185 +199,201 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                                 left: '4px',
                                 right: '4px',
                                 bottom: '4px',
-                                border: `1px solid ${OG_PALETTE.border}40`,
+                                border: '1px solid rgba(255, 255, 255, 0.1)',
                                 borderRadius: '2px',
                                 display: 'flex',
                             }} />
                         </div>
                     </div>
 
-                    {/* Corner Ornaments - Islamic Star Motifs */}
-                    {[
-                        { top: '20px', left: '20px', rotate: 0 },
-                        { top: '20px', right: '20px', rotate: 90 },
-                        { bottom: '20px', left: '20px', rotate: 270 },
-                        { bottom: '20px', right: '20px', rotate: 180 }
-                    ].map(({ rotate, ...pos }, i) => (
-                        <svg
-                            key={i}
-                            width="60"
-                            height="60"
-                            viewBox="0 0 60 60"
-                            style={{
-                                position: 'absolute',
-                                ...pos,
-                                transform: `rotate(${rotate}deg)`,
-                                opacity: 0.8,
-                            }}
-                        >
-                            <defs>
-                                <linearGradient id={`cornerGrad${i}`} x1="0%" y1="0%" x2="100%" y2="100%">
-                                    <stop offset="0%" stopColor={OG_PALETTE.gold} />
-                                    <stop offset="100%" stopColor={OG_PALETTE.goldLight} />
-                                </linearGradient>
-                            </defs>
-                            <path
-                                d="M 30 5 L 35 20 L 50 20 L 38 29 L 43 44 L 30 35 L 17 44 L 22 29 L 10 20 L 25 20 Z"
-                                fill={`url(#cornerGrad${i})`}
-                                stroke={OG_PALETTE.gold}
-                                strokeWidth="1"
-                            />
-                            <circle cx="30" cy="30" r="8" fill="none" stroke={OG_PALETTE.gold} strokeWidth="1.5" opacity="0.6" />
-                        </svg>
-                    ))}
+                    {/* Corner Islamic Stars - All 4 Corners */}
+                    {/* Top Left */}
+                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', top: '15px', left: '15px' }}>
+                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
+                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
+                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    </svg>
 
-                    {/* Main Content Container with Depth */}
+                    {/* Top Right */}
+                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', top: '15px', right: '15px' }}>
+                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
+                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
+                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    </svg>
+
+                    {/* Bottom Left */}
+                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', bottom: '15px', left: '15px' }}>
+                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
+                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
+                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    </svg>
+
+                    {/* Bottom Right */}
+                    <svg width="70" height="70" viewBox="0 0 70 70" style={{ position: 'absolute', bottom: '15px', right: '15px' }}>
+                        <path d="M 35 8 L 40 23 L 56 23 L 43 33 L 48 48 L 35 38 L 22 48 L 27 33 L 14 23 L 30 23 Z" fill="#d4af37" opacity="0.9" />
+                        <circle cx="35" cy="35" r="10" fill="none" stroke="#d4af37" strokeWidth="1.5" opacity="0.7" />
+                        <circle cx="35" cy="35" r="6" fill="#d4af37" opacity="0.4" />
+                    </svg>
+
+                    {/* Glowing Halo around logo area */}
+                    <div style={{
+                        position: 'absolute',
+                        top: '180px',
+                        left: '555px',
+                        width: '90px',
+                        height: '90px',
+                        borderRadius: '50%',
+                        background: 'radial-gradient(circle, rgba(212, 175, 55, 0.3) 0%, transparent 70%)',
+                        display: 'flex',
+                    }} />
+
+                    {/* Main Content Container */}
                     <div style={{
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        // zIndex removed: Satori uses document order
-                        gap: '16px',
-                        textAlign: 'center',
-                        padding: '0 80px',
+                        zIndex: 10,
+                        gap: '20px',
                     }}>
-                        {/* Premium Logo Icon with Glow */}
+                        {/* Premium Logo Icon */}
+                        <svg width="100" height="100" viewBox="0 0 24 24" fill="none">
+                            <defs>
+                                <linearGradient id="starFill" x1="0%" y1="0%" x2="100%" y2="100%">
+                                    <stop offset="0%" style={{ stopColor: '#f4e5c2', stopOpacity: 1 }} />
+                                    <stop offset="50%" style={{ stopColor: '#d4af37', stopOpacity: 1 }} />
+                                    <stop offset="100%" style={{ stopColor: '#b8860b', stopOpacity: 1 }} />
+                                </linearGradient>
+                            </defs>
+                            <path
+                                d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z"
+                                fill="url(#starFill)"
+                                stroke="#f4e5c2"
+                                strokeWidth="1.5"
+                            />
+                        </svg>
+
+                        {/* Main Title - Layered for 3D effect */}
                         <div style={{
                             display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
                             position: 'relative',
-                            marginBottom: '10px',
                         }}>
-                            {/* Outer Glow */}
+                            {/* Shadow layer 1 */}
                             <div style={{
                                 position: 'absolute',
-                                top: '50%',
-                                left: '50%',
-                                transform: 'translate(-50%, -50%)',
-                                width: '140px',
-                                height: '140px',
-                                borderRadius: '50%',
-                                background: `radial-gradient(circle, ${OG_PALETTE.gold}40 0%, transparent 70%)`,
+                                fontFamily: '"Cinzel"',
+                                fontSize: '115px',
+                                fontWeight: 700,
+                                letterSpacing: '0.15em',
+                                color: 'rgba(212, 175, 55, 0.2)',
+                                top: '4px',
                                 display: 'flex',
-                            }} />
-
-                            <svg width="90" height="90" viewBox="0 0 24 24" fill="none">
-                                <defs>
-                                    <linearGradient id="starGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor={OG_PALETTE.goldLight} />
-                                        <stop offset="50%" stopColor={OG_PALETTE.gold} />
-                                        <stop offset="100%" stopColor="#b8860b" />
-                                    </linearGradient>
-                                </defs>
-                                <path
-                                    d="M12 2L15 8L21 9L17 14L18 20L12 17L6 20L7 14L3 9L9 8L12 2Z"
-                                    fill="url(#starGrad)"
-                                    stroke={OG_PALETTE.goldLight}
-                                    strokeWidth="1.5"
-                                />
-                            </svg>
-                        </div>
-
-                        {/* Main Title - Ultra Premium with 3D Effect */}
-                        <div style={{
-                            fontFamily: '"Cinzel"',
-                            fontSize: '110px',
-                            fontWeight: 700,
-                            letterSpacing: '0.15em',
-                            lineHeight: 0.9,
-                            background: `linear-gradient(180deg, #ffffff 0%, ${OG_PALETTE.cream} 30%, ${OG_PALETTE.goldLight} 70%, ${OG_PALETTE.gold} 100%)`,
-                            backgroundClip: 'text',
-                            color: 'transparent',
-                            textShadow: `
-                                0 2px 0 ${OG_PALETTE.gold}40,
-                                0 4px 8px ${OG_PALETTE.gold}60,
-                                0 8px 24px ${OG_PALETTE.gold}40,
-                                0 0 60px ${OG_PALETTE.gold}30
-                            `,
-                            display: 'flex',
-                            position: 'relative',
-                        }}>
-                            <span style={{
-                                background: `linear-gradient(180deg, #ffffff 0%, ${OG_PALETTE.cream} 30%, ${OG_PALETTE.goldLight} 70%, ${OG_PALETTE.gold} 100%)`,
-                                backgroundClip: 'text',
-                                WebkitBackgroundClip: 'text',
-                                color: 'transparent',
                             }}>
                                 {title}
-                            </span>
+                            </div>
+                            
+                            {/* Shadow layer 2 */}
+                            <div style={{
+                                position: 'absolute',
+                                fontFamily: '"Cinzel"',
+                                fontSize: '115px',
+                                fontWeight: 700,
+                                letterSpacing: '0.15em',
+                                color: 'rgba(212, 175, 55, 0.3)',
+                                top: '2px',
+                                display: 'flex',
+                            }}>
+                                {title}
+                            </div>
+
+                            {/* Main title with gradient simulation */}
+                            <div style={{
+                                fontFamily: '"Cinzel"',
+                                fontSize: '115px',
+                                fontWeight: 700,
+                                letterSpacing: '0.15em',
+                                color: '#f4e5c2',
+                                display: 'flex',
+                                position: 'relative',
+                            }}>
+                                {title}
+                            </div>
                         </div>
 
-                        {/* Elegant Separator with Sacred Geometry */}
+                        {/* Elegant Separator */}
                         <div style={{
                             display: 'flex',
                             alignItems: 'center',
-                            gap: '16px',
-                            marginTop: '8px',
-                            marginBottom: '8px',
+                            gap: '20px',
+                            marginTop: '10px',
+                            marginBottom: '10px',
                         }}>
                             <div style={{
-                                width: '80px',
+                                width: '90px',
                                 height: '2px',
-                                background: `linear-gradient(90deg, transparent 0%, ${OG_PALETTE.gold} 50%, transparent 100%)`,
+                                background: 'linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%)',
                                 display: 'flex',
                             }} />
-
-                            <svg width="20" height="20" viewBox="0 0 20 20">
-                                <circle cx="10" cy="10" r="8" fill="none" stroke={OG_PALETTE.gold} strokeWidth="1.5" />
-                                <circle cx="10" cy="10" r="3" fill={OG_PALETTE.gold} />
-                                <path d="M 10 2 L 10 18 M 2 10 L 18 10" stroke={OG_PALETTE.gold} strokeWidth="1" opacity="0.6" />
+                            
+                            <svg width="24" height="24" viewBox="0 0 24 24">
+                                <circle cx="12" cy="12" r="9" fill="none" stroke="#d4af37" strokeWidth="1.8" />
+                                <circle cx="12" cy="12" r="4" fill="#d4af37" opacity="0.8" />
+                                <line x1="12" y1="3" x2="12" y2="21" stroke="#d4af37" strokeWidth="1" opacity="0.6" />
+                                <line x1="3" y1="12" x2="21" y2="12" stroke="#d4af37" strokeWidth="1" opacity="0.6" />
                             </svg>
-
+                            
                             <div style={{
-                                width: '80px',
+                                width: '90px',
                                 height: '2px',
-                                background: `linear-gradient(90deg, transparent 0%, ${OG_PALETTE.gold} 50%, transparent 100%)`,
+                                background: 'linear-gradient(90deg, transparent 0%, #d4af37 50%, transparent 100%)',
                                 display: 'flex',
                             }} />
                         </div>
 
-                        {/* Subtitle - Glowing */}
+                        {/* Subtitle - Layered */}
                         <div style={{
-                            fontFamily: '"Cinzel"',
-                            fontSize: '34px',
-                            fontWeight: 400,
-                            background: `linear-gradient(180deg, ${OG_PALETTE.silver} 0%, ${OG_PALETTE.cream}80 100%)`,
-                            backgroundClip: 'text',
-                            color: 'transparent',
-                            letterSpacing: '0.2em',
-                            textTransform: 'uppercase',
-                            textShadow: `0 0 30px ${OG_PALETTE.silver}40`,
                             display: 'flex',
+                            flexDirection: 'column',
+                            alignItems: 'center',
+                            position: 'relative',
                         }}>
-                            <span style={{
-                                background: `linear-gradient(180deg, ${OG_PALETTE.silver} 0%, ${OG_PALETTE.cream}80 100%)`,
-                                backgroundClip: 'text',
-                                WebkitBackgroundClip: 'text',
-                                color: 'transparent',
+                            {/* Glow layer */}
+                            <div style={{
+                                position: 'absolute',
+                                fontFamily: '"Cinzel"',
+                                fontSize: '36px',
+                                fontWeight: 400,
+                                letterSpacing: '0.2em',
+                                textTransform: 'uppercase',
+                                color: 'rgba(192, 192, 192, 0.3)',
+                                top: '1px',
+                                display: 'flex',
                             }}>
                                 {subtitle}
-                            </span>
+                            </div>
+
+                            <div style={{
+                                fontFamily: '"Cinzel"',
+                                fontSize: '36px',
+                                fontWeight: 400,
+                                letterSpacing: '0.2em',
+                                textTransform: 'uppercase',
+                                color: '#c0c0c0',
+                                display: 'flex',
+                            }}>
+                                {subtitle}
+                            </div>
                         </div>
 
-                        {/* Tagline - Mystical */}
+                        {/* Tagline */}
                         <div style={{
                             fontFamily: '"Amiri"',
-                            fontSize: '26px',
+                            fontSize: '28px',
                             fontWeight: 400,
-                            color: OG_PALETTE.gold,
-                            marginTop: '4px',
+                            color: '#d4af37',
+                            marginTop: '6px',
                             fontStyle: 'italic',
-                            opacity: 0.95,
-                            textShadow: `0 0 20px ${OG_PALETTE.gold}60`,
                             letterSpacing: '0.05em',
                             display: 'flex',
                         }}>
@@ -354,43 +401,42 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         </div>
                     </div>
 
-                    {/* Footer URL with Underline Effect */}
+                    {/* Footer URL */}
                     <div style={{
                         position: 'absolute',
-                        bottom: '55px',
+                        bottom: '50px',
                         display: 'flex',
                         flexDirection: 'column',
                         alignItems: 'center',
-                        gap: '8px',
+                        gap: '10px',
                     }}>
                         <div style={{
                             fontFamily: '"Cinzel"',
-                            fontSize: '17px',
+                            fontSize: '18px',
                             letterSpacing: '0.35em',
-                            color: OG_PALETTE.silver,
+                            color: '#c0c0c0',
                             opacity: 0.7,
                             display: 'flex',
                         }}>
                             HADITH.MUMIN.INK
                         </div>
                         <div style={{
-                            width: '200px',
+                            width: '220px',
                             height: '1px',
-                            background: `linear-gradient(90deg, transparent 0%, ${OG_PALETTE.gold}60 50%, transparent 100%)`,
+                            background: 'linear-gradient(90deg, transparent 0%, rgba(212, 175, 55, 0.5) 50%, transparent 100%)',
                             display: 'flex',
                         }} />
                     </div>
 
-                    {/* Ambient Bottom Glow */}
+                    {/* Bottom ambient glow */}
                     <div style={{
                         position: 'absolute',
-                        bottom: '-100px',
-                        left: '50%',
-                        transform: 'translateX(-50%)',
-                        width: '600px',
-                        height: '200px',
-                        background: `radial-gradient(ellipse at center, ${OG_PALETTE.gold}15 0%, transparent 70%)`,
-                        opacity: 0.5,
+                        bottom: '-80px',
+                        left: '400px',
+                        width: '400px',
+                        height: '160px',
+                        background: 'radial-gradient(ellipse, rgba(212, 175, 55, 0.12) 0%, transparent 70%)',
+                        borderRadius: '50%',
                         display: 'flex',
                     }} />
                 </div>
@@ -420,7 +466,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
             }
         );
     } catch (e: any) {
-        console.error('Premium OG Image Generation Failed:', e);
+        console.error('Premium Satori-Compatible OG Image Generation Failed:', e);
         return new Response(`Failed to generate image: ${e.message}`, { status: 500 });
     }
 }
