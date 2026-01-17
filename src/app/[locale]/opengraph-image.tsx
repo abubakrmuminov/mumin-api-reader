@@ -25,13 +25,12 @@ export default async function Image(props: { params: Promise<{ locale: string }>
 
     console.log('Generating Main OG Image (Flat Version) for locale:', locale);
 
-    // Load fonts - DISABLED FOR DEBUGGING
-    // try {
-    //     const cynzelRegular = await fetchFont('Cinzel', 400);
-    //     const cinzelBold = await fetchFont('Cinzel', 700);
-    //     const amiri = await fetchFont('Amiri', 400);
-
+    // Load fonts
     try {
+        const cynzelRegular = await fetchFont('Cinzel', 400);
+        const cinzelBold = await fetchFont('Cinzel', 700);
+        const amiri = await fetchFont('Amiri', 400);
+
         return new ImageResponse(
             (
                 <div
@@ -46,7 +45,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         color: OG_PALETTE.cream,
                         position: 'relative',
                         // overflow: 'hidden', // Removing overflow for safety
-                        fontFamily: 'sans-serif', // Basic font
+                        // fontFamily: 'sans-serif', // Basic font
                     }}
                 >
                     {/* Background Texture & Gradients - REMOVED for Flat Version */}
@@ -107,8 +106,9 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                         {/* Main Title - FLAT COLOR */}
                         <div style={{
                             marginTop: '20px',
+                            fontFamily: '"Cinzel"', // Restore Font
                             fontSize: '100px', // Slightly smaller
-                            fontWeight: 900,
+                            fontWeight: 700,
                             letterSpacing: '0.1em',
                             lineHeight: 1,
                             // textShadow: `0 0 40px ${OG_PALETTE.gold}60`, // Removed
@@ -135,6 +135,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
 
                         {/* Subtitle - FLAT COLOR */}
                         <div style={{
+                            fontFamily: '"Cinzel"', // Restore Font
                             fontSize: '32px',
                             color: OG_PALETTE.silver,
                             letterSpacing: '0.15em',
@@ -146,6 +147,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
 
                         {/* Tagline - FLAT COLOR */}
                         <div style={{
+                            fontFamily: '"Amiri"', // Restore Font
                             fontSize: '24px',
                             color: OG_PALETTE.gold,
                             marginTop: '10px',
@@ -160,6 +162,7 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                     <div style={{
                         position: 'absolute',
                         bottom: '60px',
+                        fontFamily: '"Cinzel"', // Restore Font
                         fontSize: '16px',
                         letterSpacing: '0.3em',
                         color: OG_PALETTE.silver,
@@ -171,7 +174,26 @@ export default async function Image(props: { params: Promise<{ locale: string }>
             ),
             {
                 ...size,
-                // fonts: [],
+                fonts: [
+                    cynzelRegular && {
+                        name: 'Cinzel',
+                        data: cynzelRegular,
+                        style: 'normal',
+                        weight: 400,
+                    },
+                    cinzelBold && {
+                        name: 'Cinzel',
+                        data: cinzelBold,
+                        style: 'normal',
+                        weight: 700,
+                    },
+                    amiri && {
+                        name: 'Amiri',
+                        data: amiri,
+                        style: 'normal',
+                        weight: 400,
+                    },
+                ].filter(Boolean) as any,
             }
         );
     } catch (e: any) {
