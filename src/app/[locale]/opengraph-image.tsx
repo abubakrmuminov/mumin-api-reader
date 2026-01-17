@@ -63,10 +63,8 @@ export default async function Image(props: { params: Promise<{ locale: string }>
                             opacity: 0.1,
                             border: `2px solid ${gold500}`,
                             transform: `rotate(${i * 22.5}deg) scale(1.2)`,
-                            top: i < 2 ? '-200px' : 'auto',
-                            bottom: i >= 2 ? '-200px' : 'auto',
-                            left: i % 2 === 0 ? '-200px' : 'auto',
-                            right: i % 2 !== 0 ? '-200px' : 'auto',
+                            ...(i < 2 ? { top: '-200px' } : { bottom: '-200px' }),
+                            ...(i % 2 === 0 ? { left: '-200px' } : { right: '-200px' }),
                             display: 'flex',
                         }}
                     />
