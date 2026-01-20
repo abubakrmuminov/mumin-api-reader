@@ -1,15 +1,52 @@
 'use client';
 
 import React from 'react';
+import { Inter, Playfair_Display, Amiri, Cairo, Poppins } from 'next/font/google';
 import { GeometricPattern } from '@/components/GeometricPattern';
 import { motion } from 'framer-motion';
 import { Search, Home, ArrowLeft } from 'lucide-react';
 import Link from 'next/link';
+import { cn } from '@/lib/utils';
+import './[locale]/globals.css';
+
+const inter = Inter({
+    subsets: ['latin'],
+    variable: '--font-inter',
+});
+
+const playfair = Playfair_Display({
+    subsets: ['latin'],
+    variable: '--font-playfair',
+});
+
+const amiri = Amiri({
+    subsets: ['arabic'],
+    weight: ['400', '700'],
+    variable: '--font-amiri',
+});
+
+const cairo = Cairo({
+    subsets: ['arabic'],
+    variable: '--font-cairo',
+});
+
+const poppins = Poppins({
+    subsets: ['latin'],
+    weight: ['300', '400', '500', '600', '700'],
+    variable: '--font-poppins',
+});
 
 export default function RootNotFound() {
     return (
-        <html lang="en">
-            <body>
+        <html lang="en" className="scroll-smooth">
+            <body className={cn(
+                'min-h-screen font-body antialiased',
+                inter.variable,
+                playfair.variable,
+                amiri.variable,
+                cairo.variable,
+                poppins.variable
+            )}>
                 <main className="min-h-screen relative flex items-center justify-center p-4 bg-gradient-to-br from-emerald-50 to-gold-50">
                     <GeometricPattern opacity={0.03} />
 
