@@ -3,6 +3,8 @@
 import React, { useEffect } from 'react';
 import Script from 'next/script';
 import { usePathname } from 'next/navigation';
+import { Analytics as VercelAnalytics } from '@vercel/analytics/react';
+import { SpeedInsights } from '@vercel/speed-insights/next';
 
 const METRICA_ID = process.env.NEXT_PUBLIC_YANDEX_METRICA || '99602444'; // Example ID
 
@@ -18,6 +20,13 @@ export const Analytics = () => {
 
     return (
         <>
+            {/* Vercel Analytics - tracks page views and user behavior */}
+            <VercelAnalytics />
+
+            {/* Vercel Speed Insights - monitors performance metrics */}
+            <SpeedInsights />
+
+            {/* Yandex.Metrica - comprehensive analytics with heatmaps */}
             <Script id="yandex-metrica" strategy="afterInteractive">
                 {`
                     (function(m,e,t,r,i,k,a){m[i]=m[i]||function(){(m[i].a=m[i].a||[]).push(arguments)};
