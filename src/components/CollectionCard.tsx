@@ -71,15 +71,13 @@ export const CollectionCard: React.FC<CollectionCardProps> = ({
                         {description}
                     </p>
 
-                    <Link
-                        href={`/collections/${slug}`}
+                    <span
                         className="flex items-center gap-2 text-xs font-bold text-emerald-900 uppercase tracking-[0.2em] group-hover:gap-4 transition-all duration-500"
-                        aria-label={`Open the ${nameEnglish} collection`}
                         title={`${t('explore')} ${nameEnglish}`}
                     >
                         {t('explore')} {nameEnglish}
                         <ChevronRight className="w-4 h-4 text-gold-500" />
-                    </Link>
+                    </span>
                 </div>
             </Link>
         </motion.div>
